@@ -1,5 +1,5 @@
 export const PERSONAL_INFO = {
-  name: "Daniel Niyomugenga",
+  name: "Daniel NIYOMUGENGA",
   title: "Software Engineer & Robotics Enthusiast",
   email: "danielhustler.hacker@gmail.com",
   phone: "+250 791832842",
