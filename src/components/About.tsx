@@ -39,11 +39,18 @@ export const About = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             className="relative w-full lg:w-1/2 flex justify-center"
           >
-            {/* Abstract visual element since we don't have a photo */}
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl bg-indigo-500/10 border border-indigo-500/20 relative group overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute inset-0 flex items-center justify-center text-8xl font-black text-indigo-500/20 select-none">
-                DN
+            <div className="relative w-64 md:w-80">
+              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-indigo-500/20 to-purple-500/10 blur-2xl" />
+              <div className="relative overflow-hidden rounded-[2rem] border border-indigo-500/20 bg-zinc-900/60 shadow-2xl">
+                <img
+                  src={PERSONAL_INFO.profileImage.src}
+                  alt={PERSONAL_INFO.profileImage.alt}
+                  width={PERSONAL_INFO.profileImage.width}
+                  height={PERSONAL_INFO.profileImage.height}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full object-cover"
+                />
               </div>
             </div>
             

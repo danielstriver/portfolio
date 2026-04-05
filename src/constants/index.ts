@@ -8,6 +8,12 @@ export const PERSONAL_INFO = {
   nationality: "Rwandan",
   dob: "01/01/2004",
   gender: "Male",
+  profileImage: {
+    src: "/images/profile.jpg",
+    alt: "Portrait of Daniel Niyomugenga",
+    width: 640,
+    height: 960,
+  },
 };
 
 export const EXPERIENCE = [
@@ -93,6 +99,7 @@ export const SKILLS = [
 ];
 
 export const SOCIALS = [
-  { name: "Facebook", url: "https://facebook.com" },
-  { name: "Instagram", url: "https://instagram.com" },
+  { name: "Instagram", url: "https://www.instagram.com/danielthepentester/" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/daniel-niyomugenga/" },
+  { name: "GitHub", url: "https://github.com/danielstriver" },
 ];

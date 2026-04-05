@@ -1,0 +1,39 @@
+import { SOCIALS } from "../constants";
+
+const socialIcons = {
+  GitHub: "github-icon",
+  Instagram: "social-icon",
+  LinkedIn: "social-icon",
+} as const;
+
+type SocialName = keyof typeof socialIcons;
+
+type SocialLinksProps = {
+  className?: string;
+};
+
+export const SocialLinks = ({ className = "" }: SocialLinksProps) => {
+  return (
+    <div className={`flex flex-wrap items-center justify-center gap-3 sm:gap-4 ${className}`.trim()}>
+      {SOCIALS.map((social) => {
+        const iconId = socialIcons[social.name as SocialName];
+
+        return (
+          <a
+            key={social.name}
+            href={social.url}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Visit Daniel on ${social.name}`}
+            className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/40 px-4 py-2 text-sm text-zinc-400 transition-all hover:border-indigo-500/50 hover:text-indigo-400"
+          >
+            <svg className="h-4 w-4 shrink-0" aria-hidden="true">
+              <use href={`/icons.svg#${iconId}`} />
+            </svg>
+            <span>{social.name}</span>
+          </a>
+        );
+      })}
+    </div>
+  );
+};
