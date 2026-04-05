@@ -1,4 +1,4 @@
-# Daniel Niyomugenga | Professional Portfolio
+# Daniel NIYOMUGENGA | Professional Portfolio
 
 A high-performance, modern personal portfolio website built with React, TypeScript, and Tailwind CSS. Featuring a dark theme, fluid animations, and a clean professional aesthetic inspired by top-tier engineering portfolios.
 
