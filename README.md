@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+# Daniel Niyomugenga | Professional Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, modern personal portfolio website built with React, TypeScript, and Tailwind CSS. Featuring a dark theme, fluid animations, and a clean professional aesthetic inspired by top-tier engineering portfolios.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
+[Deploying soon...]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack
+- **Frontend:** React 18, TypeScript, Vite
+- **Styling:** Tailwind CSS v4 (PostCSS)
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
 
-## React Compiler
+## ✨ Features
+- **Modern UI:** Dark-themed minimalist design with a subtle noise background.
+- **Responsive:** Mobile-first approach for seamless viewing on all devices.
+- **Experience Timeline:** Professional history showcased via an interactive vertical timeline.
+- **Skills Grid:** Organized expertise across Web Development, Robotics, and Security.
+- **Education & Certifications:** Comprehensive list of academic and professional credentials.
+- **Interactive:** Scroll-progress indicator, glass-morphism navbar, and smooth "Scroll-to-Top" functionality.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📁 Project Structure
+- `src/components/`: Reusable React components for each section.
+- `src/constants/`: Centralized data store (resume information).
+- `src/index.css`: Tailwind v4 configuration and custom CSS layers.
+- `src/App.tsx`: Main layout and animation orchestration.
 
-## Expanding the ESLint configuration
+## 🔧 Installation & Local Development
+1. Clone the repository:
+   ```bash
+   git clone [your-repo-url]
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Build for production:
+   ```bash
+   npm run build
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📄 License
+This project is open-source and available under the [MIT License](LICENSE).
