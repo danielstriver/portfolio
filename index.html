@@ -2,10 +2,57 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daniel Niyomugenga | Software Engineer & Robotics Enthusiast</title>
-    <meta name="description" content="Personal portfolio of Daniel Niyomugenga, Software Engineer and Robotics Enthusiast based in Kigali, Rwanda." />
+    <title>Daniel Niyomugenga | Software Engineer, Cybersecurity & Robotics</title>
+    <meta
+      name="description"
+      content="Personal portfolio of Daniel Niyomugenga, a software engineer focused on cybersecurity, robotics, and modern web systems."
+    />
+    <meta
+      name="keywords"
+      content="Daniel Niyomugenga, software engineer portfolio, cybersecurity portfolio, robotics engineer, React portfolio, TypeScript portfolio"
+    />
+    <meta name="author" content="Daniel Niyomugenga" />
+    <meta name="theme-color" content="#09090b" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Daniel Niyomugenga Portfolio" />
+    <meta property="og:title" content="Daniel Niyomugenga | Software Engineer, Cybersecurity & Robotics" />
+    <meta
+      property="og:description"
+      content="Explore Daniel Niyomugenga's work across software engineering, cybersecurity, robotics, and modern web development."
+    />
+    <meta property="og:url" content="https://danielstriver.vercel.app/" />
+    <meta property="og:image" content="https://danielstriver.vercel.app/logo.svg" />
+    <meta property="og:image:alt" content="Daniel Niyomugenga personal logo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Daniel Niyomugenga Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Software engineering, cybersecurity, robotics, and portfolio work by Daniel Niyomugenga."
+    />
+    <meta name="twitter:image" content="https://danielstriver.vercel.app/logo.svg" />
+    <link rel="canonical" href="https://danielstriver.vercel.app/" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
+    <script>
+      (() => {
+        const storageKey = "portfolio-theme";
+        const storedTheme = localStorage.getItem(storageKey);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const resolvedTheme =
+          storedTheme === "light" || storedTheme === "dark"
+            ? storedTheme
+            : prefersDark
+              ? "dark"
+              : "light";
+
+        document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
+        document.documentElement.dataset.theme = resolvedTheme;
+        document.documentElement.style.colorScheme = resolvedTheme;
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
