@@ -14,19 +14,19 @@ export const About = () => {
             className="w-full lg:w-1/2"
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight">
-              Driven by <span className="text-indigo-500">Curiosity</span>,<br /> 
-              Focused on <span className="text-indigo-500">Innovation</span>.
+              Driven by <span className="text-primary">Curiosity</span>,<br />
+              Focused on <span className="text-primary">Innovation</span>.
             </h2>
-            <div className="space-y-6 text-lg text-zinc-400 leading-relaxed">
+            <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
               <p>{PERSONAL_INFO.about}</p>
-              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-zinc-800">
+              <div className="grid grid-cols-2 gap-8 border-t border-[var(--border)] pt-8">
                 <div>
-                  <p className="text-xs uppercase tracking-widest text-zinc-500 mb-1">Nationality</p>
-                  <p className="text-zinc-200 font-medium">{PERSONAL_INFO.nationality}</p>
+                  <p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground">Nationality</p>
+                  <p className="font-medium text-foreground">{PERSONAL_INFO.nationality}</p>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-widest text-zinc-500 mb-1">Born</p>
-                  <p className="text-zinc-200 font-medium">January 1, 2004</p>
+                  <p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground">Born</p>
+                  <p className="font-medium text-foreground">January 1, 2004</p>
                 </div>
               </div>
             </div>
@@ -40,8 +40,8 @@ export const About = () => {
             className="relative w-full lg:w-1/2 flex justify-center"
           >
             <div className="relative w-64 md:w-80">
-              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-indigo-500/20 to-purple-500/10 blur-2xl" />
-              <div className="relative overflow-hidden rounded-[2rem] border border-indigo-500/20 bg-zinc-900/60 shadow-2xl">
+              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-primary/20 to-fuchsia-500/10 blur-2xl" />
+              <div className="relative overflow-hidden rounded-[2rem] border border-primary/20 bg-[var(--card)] shadow-[var(--shadow)] backdrop-blur-md">
                 <img
                   src={PERSONAL_INFO.profileImage.src}
                   alt={PERSONAL_INFO.profileImage.alt}
@@ -54,9 +54,8 @@ export const About = () => {
               </div>
             </div>
             
-            {/* Decorative dots/lines */}
-            <div className="absolute -top-10 -right-10 w-20 h-20 bg-indigo-500/5 blur-2xl rounded-full" />
-            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-500/5 blur-3xl rounded-full" />
+            <div className="absolute -top-10 -right-10 h-20 w-20 rounded-full bg-primary/5 blur-2xl" />
+            <div className="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-fuchsia-500/5 blur-3xl" />
           </motion.div>
         </div>
       </div>

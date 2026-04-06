@@ -5,10 +5,15 @@ import { ArrowDown } from "lucide-react";
 export const Hero = () => {
   return (
     <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden px-4">
-      {/* Background Gradient */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 blur-[120px] rounded-full" />
-        <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-purple-500/10 blur-[100px] rounded-full" />
+        <div
+          className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]"
+          style={{ background: "var(--hero-glow-primary)" }}
+        />
+        <div
+          className="absolute top-1/3 left-1/4 h-[300px] w-[300px] rounded-full blur-[100px]"
+          style={{ background: "var(--hero-glow-secondary)" }}
+        />
       </div>
 
       <motion.div
@@ -21,7 +26,7 @@ export const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-indigo-400 font-medium mb-4 tracking-widest uppercase text-sm"
+          className="mb-4 text-sm font-medium uppercase tracking-widest text-primary"
         >
           Welcome to my portfolio
         </motion.p>
@@ -43,7 +48,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="mx-auto mb-10 max-w-2xl text-xl leading-relaxed text-muted-foreground md:text-2xl"
         >
           {PERSONAL_INFO.title}
         </motion.h2>
@@ -56,13 +61,13 @@ export const Hero = () => {
         >
           <a
             href="#contact"
-            className="px-8 py-3 bg-zinc-100 text-zinc-950 rounded-full font-medium hover:bg-zinc-200 transition-colors"
+            className="rounded-full bg-foreground px-8 py-3 font-medium text-background transition-opacity hover:opacity-90"
           >
             Get in touch
           </a>
           <a
             href="#experience"
-            className="px-8 py-3 border border-zinc-800 rounded-full font-medium hover:bg-zinc-900 transition-colors"
+            className="rounded-full border border-[var(--border)] px-8 py-3 font-medium hover:bg-[var(--surface)]"
           >
             View Work
           </a>
@@ -73,7 +78,7 @@ export const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-zinc-500 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground"
       >
         <span className="text-xs uppercase tracking-widest">Scroll Down</span>
         <motion.div

@@ -1,6 +1,7 @@
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useTheme } from "../hooks/useTheme";
 
 const NAV_LINKS = [
   { name: "Experience", href: "#experience" },
@@ -13,74 +14,128 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
   });
 
+  const logoSrc = isDarkMode ? "/logo-dark.svg" : "/logo.svg";
+  const themeLabel = isDarkMode ? "Switch to light mode" : "Switch to dark mode";
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 py-4" : "bg-transparent py-6"
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "border-b border-[var(--border)] bg-background/80 py-4 backdrop-blur-md"
+          : "bg-transparent py-6"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
         <motion.a
           href="#"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-xl font-bold tracking-tighter"
+          className="inline-flex items-center gap-3"
+          aria-label="Go to homepage"
         >
-          DN<span className="text-indigo-500">.</span>
+          <img
+            src={logoSrc}
+            alt="Daniel Niyomugenga logo"
+            className="h-11 w-11 rounded-full object-contain shadow-[0_12px_30px_rgba(15,23,42,0.12)]"
+          />
+          <div className="hidden sm:block">
+            <div className="text-sm font-bold tracking-[0.24em] text-foreground">DANIEL</div>
+            <div className="text-[0.68rem] uppercase tracking-[0.32em] text-muted-foreground">
+              Engineer Portfolio
+            </div>
+          </div>
         </motion.a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link, i) => (
-            <motion.a
-              key={link.name}
-              href={link.href}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
-            >
-              {link.name}
-            </motion.a>
-          ))}
+        <div className="hidden items-center gap-4 md:flex">
+          <div className="flex items-center gap-8">
+            {NAV_LINKS.map((link, index) => (
+              <motion.a
+                key={link.name}
+                href={link.href}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground"
+              >
+                {link.name}
+              </motion.a>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={themeLabel}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-muted-foreground backdrop-blur-md hover:border-primary/30 hover:text-primary"
+          >
+            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
           <motion.a
             href="#contact"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="px-5 py-2 bg-indigo-600 text-white rounded-full text-sm font-bold hover:bg-indigo-700 transition-colors"
+            className="rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground hover:opacity-90"
           >
             Hire Me
           </motion.a>
         </div>
 
-        {/* Mobile Toggle */}
-        <button className="md:hidden text-zinc-400" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          {isMobileMenuOpen ? <X /> : <Menu />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={themeLabel}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-muted-foreground backdrop-blur-md hover:border-primary/30 hover:text-primary"
+          >
+            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-muted-foreground backdrop-blur-md"
+            onClick={() => setIsMobileMenuOpen((current) => !current)}
+            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
+          >
+            {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <motion.div
+          id="mobile-navigation"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden absolute top-full left-0 right-0 bg-zinc-900 border-b border-zinc-800 p-6 flex flex-col gap-4"
+          className="absolute left-0 right-0 top-full border-b border-[var(--border)] bg-[var(--card-strong)] p-6 backdrop-blur-xl md:hidden"
         >
-          {NAV_LINKS.map((link) => (
+          <div className="flex flex-col gap-4">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-base font-medium text-muted-foreground"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            ))}
             <a
-              key={link.name}
-              href={link.href}
-              className="text-lg font-medium text-zinc-400"
+              href="#contact"
+              className="inline-flex w-fit rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {link.name}
+              Hire Me
             </a>
-          ))}
+          </div>
         </motion.div>
       )}
     </nav>

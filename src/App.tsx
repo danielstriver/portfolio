@@ -34,9 +34,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-50 selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/20 selection:text-primary">
       <motion.div
-        className="fixed top-0 left-0 right-0 z-[60] h-1 origin-left bg-indigo-500"
+        className="fixed top-0 left-0 right-0 z-[60] h-1 origin-left bg-primary"
         style={{ scaleX }}
       />
 
@@ -58,16 +58,17 @@ function App() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-50 rounded-full border border-zinc-800 bg-zinc-900 p-4 text-indigo-400 shadow-2xl transition-all hover:border-indigo-500/50 hover:bg-zinc-800"
+            className="fixed bottom-8 right-8 z-50 rounded-full border border-[var(--border)] bg-[var(--card-strong)] p-4 text-primary shadow-[var(--shadow)] backdrop-blur-md transition-all hover:border-primary/40 hover:bg-[var(--surface-strong)]"
+            aria-label="Scroll back to top"
           >
             <ArrowUp size={24} />
           </motion.button>
         )}
       </AnimatePresence>
 
-      <footer className="border-t border-zinc-900 bg-zinc-950 px-4 py-12">
+      <footer className="border-t border-[var(--border)] bg-background px-4 py-12">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
-          <div className="text-center text-sm text-zinc-500 md:text-left">
+          <div className="text-center text-sm text-muted-foreground md:text-left">
             Copyright {new Date().getFullYear()} Daniel Niyomugenga. All rights reserved.
           </div>
           <SocialLinks />

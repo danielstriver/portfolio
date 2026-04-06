@@ -4,7 +4,7 @@ import { GraduationCap, Award, ExternalLink } from "lucide-react";
 
 export const Education = () => {
   return (
-    <section id="education" className="py-24 px-4 bg-zinc-950/30">
+    <section id="education" className="px-4 py-24" style={{ background: "color-mix(in srgb, var(--section) 72%, transparent)" }}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -14,14 +14,14 @@ export const Education = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Education & Certifications</h2>
-          <div className="w-20 h-1 bg-indigo-500 mx-auto rounded-full" />
+          <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Education */}
           <div>
             <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-              <GraduationCap className="text-indigo-400" />
+              <GraduationCap className="text-primary" />
               Academic Path
             </h3>
             <div className="space-y-6">
@@ -32,19 +32,19 @@ export const Education = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-700 transition-all"
+                  className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-all hover:border-primary/20 hover:bg-[var(--card-strong)]"
                 >
                   <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-lg font-bold text-indigo-400">{edu.degree}</h4>
-                    <span className="text-sm text-zinc-500 font-medium">{edu.period}</span>
+                    <h4 className="text-lg font-bold text-primary">{edu.degree}</h4>
+                    <span className="text-sm font-medium text-muted-foreground">{edu.period}</span>
                   </div>
-                  <p className="text-zinc-300 mb-4">{edu.institution}</p>
+                  <p className="mb-4 text-muted-foreground">{edu.institution}</p>
                   {edu.website && (
                     <a
                       href={edu.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-zinc-500 flex items-center gap-1 hover:text-indigo-400 transition-colors"
+                      className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary"
                     >
                       <ExternalLink size={12} />
                       {new URL(edu.website).hostname}
@@ -58,7 +58,7 @@ export const Education = () => {
           {/* Certifications */}
           <div>
             <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-              <Award className="text-indigo-400" />
+              <Award className="text-primary" />
               Certifications
             </h3>
             <div className="grid grid-cols-1 gap-4">
@@ -69,10 +69,10 @@ export const Education = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-zinc-800 bg-zinc-900/20 hover:bg-zinc-900/40 transition-colors"
+                  className="flex items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--card)] p-4 transition-colors hover:bg-[var(--card-strong)]"
                 >
-                  <div className="w-2 h-2 rounded-full bg-indigo-500" />
-                  <span className="text-zinc-300 text-sm md:text-base leading-relaxed">{cert}</span>
+                  <div className="h-2 w-2 rounded-full bg-primary" />
+                  <span className="text-sm leading-relaxed text-muted-foreground md:text-base">{cert}</span>
                 </motion.div>
               ))}
             </div>
