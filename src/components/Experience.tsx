@@ -4,7 +4,7 @@ import { Briefcase, Calendar, MapPin } from "lucide-react";
 
 export const Experience = () => {
   return (
-    <section id="experience" className="py-24 px-4 bg-zinc-950/50">
+    <section id="experience" className="px-4 py-24" style={{ background: "var(--section)" }}>
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -14,12 +14,11 @@ export const Experience = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Professional Experience</h2>
-          <div className="w-20 h-1 bg-indigo-500 mx-auto rounded-full" />
+          <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
         </motion.div>
 
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-zinc-800 md:-translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 top-0 w-[2px] md:left-1/2 md:-translate-x-1/2" style={{ background: "var(--border)" }} />
 
           <div className="space-y-12">
             {EXPERIENCE.map((exp, index) => (
@@ -33,17 +32,16 @@ export const Experience = () => {
                   index % 2 === 0 ? "md:flex-row-reverse text-left md:text-right" : "text-left"
                 }`}
               >
-                {/* Content Card */}
                 <div className="w-full md:w-1/2 pl-8 md:pl-0">
-                  <div className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 backdrop-blur-sm hover:border-zinc-700 transition-all group">
+                  <div className="group rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 backdrop-blur-sm transition-all hover:border-primary/25 hover:bg-[var(--card-strong)]">
                     <div className={`flex items-center gap-2 mb-2 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
-                      <Briefcase size={16} className="text-indigo-400" />
-                      <span className="text-sm font-medium text-indigo-400 uppercase tracking-widest">{exp.company}</span>
+                      <Briefcase size={16} className="text-primary" />
+                      <span className="text-sm font-medium uppercase tracking-widest text-primary">{exp.company}</span>
                     </div>
                     
-                    <h3 className="text-xl font-bold mb-4 group-hover:text-indigo-400 transition-colors">{exp.title}</h3>
+                    <h3 className="mb-4 text-xl font-bold group-hover:text-primary">{exp.title}</h3>
                     
-                    <div className={`flex flex-col gap-1 mb-4 text-zinc-500 text-sm ${index % 2 === 0 ? "md:items-end" : "items-start"}`}>
+                    <div className={`mb-4 flex flex-col gap-1 text-sm text-muted-foreground ${index % 2 === 0 ? "md:items-end" : "items-start"}`}>
                       <div className="flex items-center gap-2">
                         <Calendar size={14} />
                         <span>{exp.period}</span>
@@ -54,7 +52,7 @@ export const Experience = () => {
                       </div>
                     </div>
 
-                    <ul className={`space-y-2 text-zinc-400 text-sm list-none ${index % 2 === 0 ? "md:text-right" : ""}`}>
+                    <ul className={`list-none space-y-2 text-sm text-muted-foreground ${index % 2 === 0 ? "md:text-right" : ""}`}>
                       {exp.description.map((item, i) => (
                         <li key={i} className="leading-relaxed">
                           {item}
@@ -63,13 +61,10 @@ export const Experience = () => {
                     </ul>
                   </div>
                 </div>
-
-                {/* Timeline Dot */}
                 <div className="absolute left-0 md:left-1/2 top-0 md:top-8 -translate-x-1/2 w-8 h-8 flex items-center justify-center z-10">
-                  <div className="w-4 h-4 rounded-full bg-zinc-950 border-4 border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.5)]" />
+                  <div className="h-4 w-4 rounded-full border-4 border-primary shadow-[0_0_15px_rgba(99,102,241,0.35)]" style={{ background: "var(--background)" }} />
                 </div>
 
-                {/* Placeholder for layout balance */}
                 <div className="hidden md:block w-1/2" />
               </motion.div>
             ))}
