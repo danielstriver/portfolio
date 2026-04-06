@@ -2,16 +2,18 @@
   <title>Daniel Niyomugenga logo</title>
   <circle cx="64" cy="64" r="52" stroke="#C8962E" stroke-width="4"/>
   <circle cx="64" cy="64" r="46" stroke="#D6AA45" stroke-width="2"/>
-  <path d="M37 43H54.5C69.136 43 78 51.864 78 66.5C78 81.136 69.136 90 54.5 90H37V43ZM48 53V80H54C61.18 80 66 75.18 66 68V65C66 57.82 61.18 53 54 53H48Z" fill="#182040" stroke="#D6AA45" stroke-width="1.5"/>
-  <path d="M76 43H88L104 70.5V43H115V90H103L87 62.5V90H76V43Z" fill="#182040" stroke="#D6AA45" stroke-width="1.5"/>
-  <circle cx="44.5" cy="55.5" r="2.5" fill="#D6AA45"/>
-  <circle cx="48.5" cy="73.5" r="2.5" fill="#D6AA45"/>
-  <circle cx="59.5" cy="63.5" r="2.5" fill="#D6AA45"/>
-  <circle cx="89.5" cy="59.5" r="2.5" fill="#D6AA45"/>
-  <circle cx="97.5" cy="70.5" r="2.5" fill="#D6AA45"/>
-  <path d="M45 56L52 56" stroke="#D6AA45" stroke-width="1.5"/>
-  <path d="M49 73L57 73" stroke="#D6AA45" stroke-width="1.5"/>
-  <path d="M60 64L66 64" stroke="#D6AA45" stroke-width="1.5"/>
-  <path d="M90 60L90 50" stroke="#D6AA45" stroke-width="1.5"/>
-  <path d="M98 71L104 78" stroke="#D6AA45" stroke-width="1.5"/>
+  <g transform="translate(-12 0)">
+    <path d="M37 43H54.5C69.136 43 78 51.864 78 66.5C78 81.136 69.136 90 54.5 90H37V43ZM48 53V80H54C61.18 80 66 75.18 66 68V65C66 57.82 61.18 53 54 53H48Z" fill="#182040" stroke="#D6AA45" stroke-width="1.5"/>
+    <path d="M76 43H88L104 70.5V43H115V90H103L87 62.5V90H76V43Z" fill="#182040" stroke="#D6AA45" stroke-width="1.5"/>
+    <circle cx="44.5" cy="55.5" r="2.5" fill="#D6AA45"/>
+    <circle cx="48.5" cy="73.5" r="2.5" fill="#D6AA45"/>
+    <circle cx="59.5" cy="63.5" r="2.5" fill="#D6AA45"/>
+    <circle cx="89.5" cy="59.5" r="2.5" fill="#D6AA45"/>
+    <circle cx="97.5" cy="70.5" r="2.5" fill="#D6AA45"/>
+    <path d="M45 56L52 56" stroke="#D6AA45" stroke-width="1.5"/>
+    <path d="M49 73L57 73" stroke="#D6AA45" stroke-width="1.5"/>
+    <path d="M60 64L66 64" stroke="#D6AA45" stroke-width="1.5"/>
+    <path d="M90 60L90 50" stroke="#D6AA45" stroke-width="1.5"/>
+    <path d="M98 71L104 78" stroke="#D6AA45" stroke-width="1.5"/>
+  </g>
 </svg>
