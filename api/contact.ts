@@ -1,6 +1,6 @@
 import { Resend } from "resend";
-import { contactFormSchema } from "../src/utils/contact-schema";
-import { SITE_CONFIG } from "../src/utils/site";
+import { contactFormSchema } from "../src/utils/contact-schema.js";
+import { SITE_CONFIG } from "../src/utils/site.js";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const contactEmail = process.env.CONTACT_EMAIL;
