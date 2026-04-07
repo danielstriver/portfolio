@@ -6,7 +6,7 @@ export const PERSONAL_INFO = {
   address: "KN 183 ST, KN 222 ST, Kigali, Rwanda",
   about: "A motivated and self-driven technologist with a strong background in Computer Science, Cybersecurity, and Robotics. Proven leader in student-led tech initiatives and an active researcher in the robotics field. Dedicated to building innovative solutions and fostering collaborative environments for technical growth.",
   nationality: "Rwandan",
-  dob: "01/01/2004",
+  dob: "June 16, 2004",
   gender: "Male",
   profileImage: {
     src: "/images/profile.jpg",
