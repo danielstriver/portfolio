@@ -72,7 +72,7 @@ export const Navbar = () => {
             type="button"
             onClick={toggleTheme}
             aria-label={themeLabel}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-muted-foreground backdrop-blur-md hover:border-primary/30 hover:text-primary"
+            className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-muted-foreground backdrop-blur-md hover:border-primary/30 hover:text-primary"
           >
             {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -92,14 +92,14 @@ export const Navbar = () => {
             type="button"
             onClick={toggleTheme}
             aria-label={themeLabel}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-muted-foreground backdrop-blur-md hover:border-primary/30 hover:text-primary"
+            className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-muted-foreground backdrop-blur-md hover:border-primary/30 hover:text-primary"
           >
             {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-muted-foreground backdrop-blur-md"
+            className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-muted-foreground backdrop-blur-md"
             onClick={() => setIsMobileMenuOpen((current) => !current)}
             aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isMobileMenuOpen}

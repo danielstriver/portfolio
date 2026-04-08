@@ -58,7 +58,7 @@ function App() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-50 rounded-full border border-[var(--border)] bg-[var(--card-strong)] p-4 text-primary shadow-[var(--shadow)] backdrop-blur-md transition-all hover:border-primary/40 hover:bg-[var(--surface-strong)]"
+            className="fixed bottom-8 right-8 z-50 cursor-pointer rounded-full border border-[var(--border)] bg-[var(--card-strong)] p-4 text-primary shadow-[var(--shadow)] backdrop-blur-md transition-all hover:border-primary/40 hover:bg-[var(--surface-strong)]"
             aria-label="Scroll back to top"
           >
             <ArrowUp size={24} />
