@@ -26,7 +26,7 @@ export const About = () => {
                 </div>
                 <div>
                   <p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground">Born</p>
-                  <p className="font-medium text-foreground">January 1, 2004</p>
+                  <p className="font-medium text-foreground">{PERSONAL_INFO.dob}</p>
                 </div>
               </div>
             </div>
