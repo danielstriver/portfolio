@@ -196,7 +196,7 @@ export const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 font-bold text-primary-foreground transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 font-bold text-primary-foreground transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {isSubmitting ? (
                     <>
@@ -210,14 +210,6 @@ export const Contact = () => {
                     </>
                   )}
                 </button>
-
-                <p
-                  className={`text-sm ${
-                    isError ? "text-rose-500" : isSuccess ? "text-emerald-500" : "text-muted-foreground"
-                  }`}
-                >
-                  {feedbackMessage || "Responses are validated, spam-protected, and routed through Resend."}
-                </p>
               </form>
             </motion.div>
           </div>
