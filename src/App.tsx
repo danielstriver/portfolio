@@ -9,10 +9,15 @@ import { Skills } from "./components/Skills";
 import { Education } from "./components/Education";
 import { Contact } from "./components/Contact";
 import { SocialLinks } from "./components/SocialLinks";
+import { useTranslation } from "./hooks/useTranslation";
+import { COMMON_INFO } from "./constants";
+import { VisitorCounter } from "./components/VisitorCounter";
 
 function App() {
   const { scrollYProgress } = useScroll();
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const { t } = useTranslation();
+  
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -67,9 +72,12 @@ function App() {
       </AnimatePresence>
 
       <footer className="border-t border-[var(--border)] bg-background px-4 py-12">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
-          <div className="text-center text-sm text-muted-foreground md:text-left">
-            Copyright {new Date().getFullYear()} Daniel Niyomugenga. All rights reserved.
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-8 md:flex-row">
+          <div className="flex flex-col gap-4 items-center md:items-start">
+            <div className="text-center text-sm text-muted-foreground md:text-left">
+              Copyright {new Date().getFullYear()} {COMMON_INFO.name}. {t("footer.rights")}
+            </div>
+            <VisitorCounter />
           </div>
           <SocialLinks />
         </div>

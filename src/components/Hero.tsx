@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
-import { PERSONAL_INFO } from "../constants";
+import { COMMON_INFO } from "../constants";
 import { ArrowDown } from "lucide-react";
+import { useTranslation } from "../hooks/useTranslation";
 
 export const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden px-4">
       <div className="absolute inset-0 z-0">
@@ -28,7 +31,7 @@ export const Hero = () => {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="mb-4 text-sm font-medium uppercase tracking-widest text-primary"
         >
-          Welcome to my portfolio
+          {t("ui.welcome")}
         </motion.p>
         
         <motion.h1
@@ -37,7 +40,7 @@ export const Hero = () => {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6"
         >
-          {PERSONAL_INFO.name.split(" ").map((word, i) => (
+          {COMMON_INFO.name.split(" ").map((word, i) => (
             <span key={i} className="inline-block mr-4">
               {word}
             </span>
@@ -50,7 +53,7 @@ export const Hero = () => {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="mx-auto mb-10 max-w-2xl text-xl leading-relaxed text-muted-foreground md:text-2xl"
         >
-          {PERSONAL_INFO.title}
+          {t("title")}
         </motion.h2>
 
         <motion.div
@@ -63,13 +66,13 @@ export const Hero = () => {
             href="#contact"
             className="rounded-full bg-foreground px-8 py-3 font-medium text-background transition-opacity hover:opacity-90"
           >
-            Get in touch
+            {t("ui.getInTouch")}
           </a>
           <a
             href="#experience"
             className="rounded-full border border-[var(--border)] px-8 py-3 font-medium hover:bg-[var(--surface)]"
           >
-            View Work
+            {t("ui.viewWork")}
           </a>
         </motion.div>
       </motion.div>
@@ -80,7 +83,7 @@ export const Hero = () => {
         transition={{ delay: 1, duration: 1 }}
         className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground"
       >
-        <span className="text-xs uppercase tracking-widest">Scroll Down</span>
+        <span className="text-xs uppercase tracking-widest">{t("ui.scrollDown")}</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}

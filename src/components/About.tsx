@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
-import { PERSONAL_INFO } from "../constants";
+import { COMMON_INFO } from "../constants";
+import { useTranslation } from "../hooks/useTranslation";
 
 export const About = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="about" className="py-24 px-4 overflow-hidden">
       <div className="max-w-6xl mx-auto">
@@ -14,19 +17,19 @@ export const About = () => {
             className="w-full lg:w-1/2"
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight">
-              Driven by <span className="text-primary">Curiosity</span>,<br />
-              Focused on <span className="text-primary">Innovation</span>.
+              {t("ui.drivenBy")} <span className="text-primary">{t("ui.curiosity")}</span>,<br />
+              {t("ui.focusedOn")} <span className="text-primary">{t("ui.innovation")}</span>.
             </h2>
             <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
-              <p>{PERSONAL_INFO.about}</p>
+              <p>{t("about")}</p>
               <div className="grid grid-cols-2 gap-8 border-t border-[var(--border)] pt-8">
                 <div>
-                  <p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground">Nationality</p>
-                  <p className="font-medium text-foreground">{PERSONAL_INFO.nationality}</p>
+                  <p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground">{t("ui.nationality")}</p>
+                  <p className="font-medium text-foreground">{COMMON_INFO.nationality}</p>
                 </div>
                 <div>
-                  <p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground">Born</p>
-                  <p className="font-medium text-foreground">{PERSONAL_INFO.dob}</p>
+                  <p className="mb-1 text-xs uppercase tracking-widest text-muted-foreground">{t("ui.born")}</p>
+                  <p className="font-medium text-foreground">{COMMON_INFO.dob}</p>
                 </div>
               </div>
             </div>
@@ -43,10 +46,10 @@ export const About = () => {
               <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-primary/20 to-fuchsia-500/10 blur-2xl" />
               <div className="relative overflow-hidden rounded-[2rem] border border-primary/20 bg-[var(--card)] shadow-[var(--shadow)] backdrop-blur-md">
                 <img
-                  src={PERSONAL_INFO.profileImage.src}
-                  alt={PERSONAL_INFO.profileImage.alt}
-                  width={PERSONAL_INFO.profileImage.width}
-                  height={PERSONAL_INFO.profileImage.height}
+                  src={COMMON_INFO.profileImage.src}
+                  alt={COMMON_INFO.profileImage.alt}
+                  width={COMMON_INFO.profileImage.width}
+                  height={COMMON_INFO.profileImage.height}
                   loading="lazy"
                   decoding="async"
                   className="h-auto w-full object-cover"

@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
-import { EDUCATION, CERTIFICATIONS } from "../constants";
+import { useTranslation } from "../hooks/useTranslation";
+import type { EducationItem } from "../types/language.types";
 import { GraduationCap, Award, ExternalLink } from "lucide-react";
 
 export const Education = () => {
+  const { t } = useTranslation();
+  const education = t("education") as EducationItem[];
+  const certifications = t("certifications") as string[];
+
   return (
     <section id="education" className="px-4 py-24" style={{ background: "color-mix(in srgb, var(--section) 72%, transparent)" }}>
       <div className="max-w-6xl mx-auto">
@@ -13,7 +18,7 @@ export const Education = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Education & Certifications</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">{t("sections.education")}</h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
         </motion.div>
 
@@ -22,10 +27,10 @@ export const Education = () => {
           <div>
             <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
               <GraduationCap className="text-primary" />
-              Academic Path
+              {t("sections.academic")}
             </h3>
             <div className="space-y-6">
-              {EDUCATION.map((edu, index) => (
+              {education.map((edu, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
@@ -59,10 +64,10 @@ export const Education = () => {
           <div>
             <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
               <Award className="text-primary" />
-              Certifications
+              {t("sections.certifications")}
             </h3>
             <div className="grid grid-cols-1 gap-4">
-              {CERTIFICATIONS.map((cert, index) => (
+              {certifications.map((cert, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: 20 }}

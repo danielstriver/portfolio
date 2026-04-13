@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
-import { SKILLS } from "../constants";
+import { useTranslation } from "../hooks/useTranslation";
+import type { SkillGroup } from "../types/language.types";
 
 export const Skills = () => {
+  const { t } = useTranslation();
+  const skills = t("skills") as SkillGroup[];
+
   return (
     <section id="skills" className="py-24 px-4">
       <div className="max-w-6xl mx-auto">
@@ -12,12 +16,12 @@ export const Skills = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Skills & Expertise</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">{t("sections.skills")}</h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SKILLS.map((skillGroup, index) => (
+          {skills.map((skillGroup, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -30,7 +34,7 @@ export const Skills = () => {
                 {skillGroup.category}
               </h3>
               <div className="flex flex-wrap gap-2">
-                {skillGroup.items.map((skill, i) => (
+                {skillGroup.items.map((skill: string, i: number) => (
                   <span
                     key={i}
                     className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-sm text-muted-foreground transition-colors group-hover:border-primary/20"

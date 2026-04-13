@@ -1,4 +1,4 @@
-import { SOCIALS } from "../constants";
+import { COMMON_INFO } from "../constants";
 
 const socialIcons = {
   GitHub: "github-icon",
@@ -13,9 +13,11 @@ type SocialLinksProps = {
 };
 
 export const SocialLinks = ({ className = "" }: SocialLinksProps) => {
+  const socials = COMMON_INFO.socials;
+
   return (
     <div className={`flex flex-wrap items-center justify-center gap-3 sm:gap-4 ${className}`.trim()}>
-      {SOCIALS.map((social) => {
+      {socials.map((social) => {
         const iconId = socialIcons[social.name as SocialName];
 
         return (

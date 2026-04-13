@@ -2,19 +2,15 @@ import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "../hooks/useTheme";
-
-const NAV_LINKS = [
-  { name: "Experience", href: "#experience" },
-  { name: "Skills", href: "#skills" },
-  { name: "Education", href: "#education" },
-  { name: "Contact", href: "#contact" },
-];
+import { useTranslation } from "../hooks/useTranslation";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const { isDarkMode, toggleTheme } = useTheme();
+  const { t } = useTranslation();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
@@ -22,6 +18,13 @@ export const Navbar = () => {
 
   const logoSrc = isDarkMode ? "/logo-dark.svg" : "/logo.svg";
   const themeLabel = isDarkMode ? "Switch to light mode" : "Switch to dark mode";
+
+  const NAV_LINKS = [
+    { name: t("nav.experience"), href: "#experience" },
+    { name: t("nav.skills"), href: "#skills" },
+    { name: t("nav.education"), href: "#education" },
+    { name: t("nav.contact"), href: "#contact" },
+  ];
 
   return (
     <nav
@@ -44,7 +47,7 @@ export const Navbar = () => {
             alt="Daniel Niyomugenga logo"
             className="h-11 w-11 rounded-full object-contain shadow-[0_12px_30px_rgba(15,23,42,0.12)]"
           />
-          <div className="hidden sm:block">
+          <div className="hidden sm:block text-left">
             <div className="text-sm font-bold tracking-[0.24em] text-foreground">DANIEL</div>
             <div className="text-[0.68rem] uppercase tracking-[0.32em] text-muted-foreground">
               Engineer Portfolio
@@ -68,14 +71,18 @@ export const Navbar = () => {
             ))}
           </div>
 
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label={themeLabel}
-            className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-muted-foreground backdrop-blur-md hover:border-primary/30 hover:text-primary"
-          >
-            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
+          <div className="flex items-center gap-3 ml-4">
+            <LanguageSwitcher />
+
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={themeLabel}
+              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[var(--border)] bg-[var(--card)] text-muted-foreground backdrop-blur-md hover:border-primary/30 hover:text-primary transition-all"
+            >
+              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          </div>
 
           <motion.a
             href="#contact"
@@ -83,11 +90,13 @@ export const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground hover:opacity-90"
           >
-            Hire Me
+            {t("nav.hireMe")}
           </motion.a>
         </div>
 
         <div className="flex items-center gap-3 md:hidden">
+          <LanguageSwitcher />
+          
           <button
             type="button"
             onClick={toggleTheme}
@@ -133,7 +142,7 @@ export const Navbar = () => {
               className="inline-flex w-fit rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Hire Me
+              {t("nav.hireMe")}
             </a>
           </div>
         </motion.div>

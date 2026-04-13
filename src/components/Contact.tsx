@@ -2,13 +2,15 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { type FormEvent, useEffect } from "react";
 import { useContactForm } from "../hooks/useContactForm";
-import { PERSONAL_INFO } from "../constants";
+import { COMMON_INFO } from "../constants";
 import { Toast } from "./Toast";
+import { useTranslation } from "../hooks/useTranslation";
 
 const inputClassName =
   "w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary";
 
 export const Contact = () => {
+  const { t } = useTranslation();
   const {
     values,
     fieldErrors,
@@ -52,7 +54,7 @@ export const Contact = () => {
             transition={{ duration: 0.8 }}
             className="mb-16 text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">Get in Touch</h2>
+            <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">{t("sections.contact")}</h2>
             <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
           </motion.div>
 
@@ -63,10 +65,9 @@ export const Contact = () => {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <h3 className="mb-6 text-2xl font-bold">Let's connect</h3>
+              <h3 className="mb-6 text-2xl font-bold">{t("contact.subtitle")}</h3>
               <p className="max-w-md leading-relaxed text-muted-foreground">
-                Whether you want to collaborate, discuss an opportunity, or ask a technical question,
-                this form will send your message directly to my inbox.
+                {t("contact.description")}
               </p>
 
               <div className="space-y-6">
@@ -75,9 +76,9 @@ export const Contact = () => {
                     <Mail className="text-primary" size={20} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">Email</p>
-                    <a href={`mailto:${PERSONAL_INFO.email}`} className="text-lg hover:text-primary">
-                      {PERSONAL_INFO.email}
+                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">{t("contact.email")}</p>
+                    <a href={`mailto:${COMMON_INFO.email}`} className="text-lg hover:text-primary">
+                      {COMMON_INFO.email}
                     </a>
                   </div>
                 </div>
@@ -87,9 +88,9 @@ export const Contact = () => {
                     <Phone className="text-primary" size={20} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">Phone</p>
-                    <a href={`tel:${PERSONAL_INFO.phone}`} className="text-lg hover:text-primary">
-                      {PERSONAL_INFO.phone}
+                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">{t("contact.phone")}</p>
+                    <a href={`tel:${COMMON_INFO.phone}`} className="text-lg hover:text-primary">
+                      {COMMON_INFO.phone}
                     </a>
                   </div>
                 </div>
@@ -99,8 +100,8 @@ export const Contact = () => {
                     <MapPin className="text-primary" size={20} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">Address</p>
-                    <p className="text-lg text-muted-foreground">{PERSONAL_INFO.address}</p>
+                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">{t("contact.address")}</p>
+                    <p className="text-lg text-muted-foreground">{COMMON_INFO.address}</p>
                   </div>
                 </div>
               </div>
@@ -128,7 +129,7 @@ export const Contact = () => {
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-muted-foreground">
-                      Your Name
+                      {t("contact.name")}
                     </label>
                     <input
                       id="name"
@@ -137,7 +138,7 @@ export const Contact = () => {
                       value={values.name}
                       onChange={(event) => updateField("name", event.target.value)}
                       className={inputClassName}
-                      placeholder="John Doe"
+                      placeholder={t("contact.namePlaceholder")}
                       aria-invalid={Boolean(fieldErrors.name?.length)}
                       aria-describedby={fieldErrors.name?.length ? "name-error" : undefined}
                     />
@@ -150,7 +151,7 @@ export const Contact = () => {
 
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium text-muted-foreground">
-                      Email Address
+                      {t("contact.email")}
                     </label>
                     <input
                       id="email"
@@ -159,7 +160,7 @@ export const Contact = () => {
                       value={values.email}
                       onChange={(event) => updateField("email", event.target.value)}
                       className={inputClassName}
-                      placeholder="john@example.com"
+                      placeholder={t("contact.emailPlaceholder")}
                       aria-invalid={Boolean(fieldErrors.email?.length)}
                       aria-describedby={fieldErrors.email?.length ? "email-error" : undefined}
                     />
@@ -173,7 +174,7 @@ export const Contact = () => {
 
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium text-muted-foreground">
-                    Message
+                    {t("contact.message")}
                   </label>
                   <textarea
                     id="message"
@@ -182,7 +183,7 @@ export const Contact = () => {
                     value={values.message}
                     onChange={(event) => updateField("message", event.target.value)}
                     className={`${inputClassName} resize-none`}
-                    placeholder="Share a few details about your project, role, or question."
+                    placeholder={t("contact.messagePlaceholder")}
                     aria-invalid={Boolean(fieldErrors.message?.length)}
                     aria-describedby={fieldErrors.message?.length ? "message-error" : undefined}
                   />
@@ -201,11 +202,11 @@ export const Contact = () => {
                   {isSubmitting ? (
                     <>
                       <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground/40 border-t-primary-foreground" />
-                      Sending message...
+                      {t("contact.sending")}
                     </>
                   ) : (
                     <>
-                      Send Message
+                      {t("contact.send")}
                       <Send size={18} />
                     </>
                   )}

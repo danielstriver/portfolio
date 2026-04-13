@@ -5,17 +5,20 @@ import type {
   ContactSubmissionState,
 } from "../types/contact.types";
 import { contactFormSchema, emptyContactForm } from "../utils/contact-schema";
-
-const getErrorMessage = (error: unknown) =>
-  error instanceof Error ? error.message : "Something went wrong. Please try again.";
+import { useTranslation } from "./useTranslation";
 
 export const useContactForm = () => {
+  const { t } = useTranslation();
+  
   const [values, setValues] = useState<ContactFormValues>(emptyContactForm);
   const [fieldErrors, setFieldErrors] = useState<
     Partial<Record<keyof ContactFormValues, string[]>>
   >({});
   const [status, setStatus] = useState<ContactSubmissionState>("idle");
   const [feedbackMessage, setFeedbackMessage] = useState("");
+
+  const getErrorMessage = useCallback((error: unknown) =>
+    error instanceof Error ? error.message : t("contact.error"), [t]);
 
   const updateField = useCallback((field: keyof ContactFormValues, value: string) => {
     setValues((currentValues) => ({ ...currentValues, [field]: value }));
@@ -46,7 +49,7 @@ export const useContactForm = () => {
     if (!validationResult.success) {
       setStatus("error");
       setFieldErrors(validationResult.error.flatten().fieldErrors);
-      setFeedbackMessage("Please correct the highlighted fields and try again.");
+      setFeedbackMessage(t("contact.error")); // Or a specific validation error message
       return;
     }
 
@@ -68,18 +71,18 @@ export const useContactForm = () => {
       if (!response.ok || !result.success) {
         setStatus("error");
         setFieldErrors(result.success ? {} : result.fieldErrors ?? {});
-        setFeedbackMessage(result.message);
+        setFeedbackMessage(t("contact.error"));
         return;
       }
 
       setStatus("success");
-      setFeedbackMessage(result.message);
+      setFeedbackMessage(t("contact.success"));
       resetForm();
     } catch (error) {
       setStatus("error");
       setFeedbackMessage(getErrorMessage(error));
     }
-  }, [resetForm, values]);
+  }, [resetForm, values, t, getErrorMessage]);
 
   return {
     values,

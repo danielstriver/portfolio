@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
-import { EXPERIENCE } from "../constants";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { useTranslation } from "../hooks/useTranslation";
+import type { ExperienceItem } from "../types/language.types";
 
 export const Experience = () => {
+  const { t } = useTranslation();
+  const experience = t("experience") as ExperienceItem[];
+
   return (
     <section id="experience" className="px-4 py-24" style={{ background: "var(--section)" }}>
       <div className="max-w-4xl mx-auto">
@@ -13,7 +17,7 @@ export const Experience = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Professional Experience</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">{t("sections.experience")}</h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
         </motion.div>
 
@@ -21,7 +25,7 @@ export const Experience = () => {
           <div className="absolute bottom-0 left-0 top-0 w-[2px] md:left-1/2 md:-translate-x-1/2" style={{ background: "var(--border)" }} />
 
           <div className="space-y-12">
-            {EXPERIENCE.map((exp, index) => (
+            {experience.map((exp, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
@@ -53,7 +57,7 @@ export const Experience = () => {
                     </div>
 
                     <ul className="list-none space-y-2 text-sm text-muted-foreground">
-                      {exp.description.map((item, i) => (
+                      {exp.description.map((item: string, i: number) => (
                         <li key={i} className="leading-relaxed">
                           {item}
                         </li>
