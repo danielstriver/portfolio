@@ -88,6 +88,27 @@ export const DATA: Record<Language, TranslationData> = {
         website: "https://www.w3schools.com/",
       },
     ],
+    projects: [
+      {
+        title: "RWANDA TOURIST ASSISTANT",
+        description: "An AI-powered travel companion designed to help tourists explore Rwanda's rich culture, attractions, and heritage with ease.",
+        image: "/images/rwanda-tour-image.jpg",
+        link: "https://rwanda-tour-ai.vercel.app",
+        tags: ["React", "AI", "Vercel", "Tailwind"],
+      },
+      {
+        title: "Project 2",
+        description: "Innovation in progress. A new project is currently under development to solve real-world challenges.",
+        image: "/images/guide-fix-image.png",
+        status: "Coming Soon",
+      },
+      {
+        title: "Project 3",
+        description: "Exploring new horizons. Stay tuned for an upcoming robotics-focused project.",
+        image: "/images/logo.png",
+        status: "Coming Soon",
+      },
+    ],
     certifications: [
       "Certified in Cybersecurity — ISC2 (2022)",
       "IOC Learning Sprint Certificate — IOC Young Leaders (2024)",
@@ -105,6 +126,7 @@ export const DATA: Record<Language, TranslationData> = {
     ],
     nav: {
       experience: "Experience",
+      projects: "Projects",
       skills: "Skills",
       education: "Education",
       contact: "Contact",
@@ -112,6 +134,7 @@ export const DATA: Record<Language, TranslationData> = {
     },
     sections: {
       experience: "Professional Experience",
+      projects: "Featured Projects",
       skills: "Skills & Expertise",
       education: "Education & Certifications",
       contact: "Get in Touch",
@@ -220,6 +243,27 @@ export const DATA: Record<Language, TranslationData> = {
         website: "https://www.w3schools.com/",
       },
     ],
+    projects: [
+      {
+        title: "RWANDA TOURIST ASSISTANT",
+        description: "Ubufasha bugufasha abakerarugendo gusura u Rwanda, kumenya imigenzo, ahantu nyaburanga n'amateka yarwo mu buryo bworoshye.",
+        image: "/images/rwanda-tour-image.jpg",
+        link: "https://rwanda-tour-ai.vercel.app",
+        tags: ["React", "AI", "Vercel", "Tailwind"],
+      },
+      {
+        title: "Umushinga wa 2",
+        description: "Guhanga udushya birakomeje. Umushinga mushya uri gukorwa kugira ngo ukemure imbogamizi z'ubuzima busanzwe.",
+        image: "/images/guide-fix-image.png",
+        status: "Uzaza vuba",
+      },
+      {
+        title: "Umushinga wa 3",
+        description: "Gushakashatsha ibishya. Tegereza umushinga ugiye kuza wibanze kuri robotics.",
+        image: "/images/logo.png",
+        status: "Uzaza vuba",
+      },
+    ],
     certifications: [
       "Impamyabumenyi muri Cybersecurity — ISC2 (2022)",
       "Icyemezo cya IOC Learning Sprint — IOC Young Leaders (2024)",
@@ -237,6 +281,7 @@ export const DATA: Record<Language, TranslationData> = {
     ],
     nav: {
       experience: "Inararibonye",
+      projects: "Imishinga",
       skills: "Ubumenyi",
       education: "Amashuri",
       contact: "Twandikire",
@@ -244,6 +289,7 @@ export const DATA: Record<Language, TranslationData> = {
     },
     sections: {
       experience: "Inararibonye mu Kazi",
+      projects: "Imishinga Y'ingenzi",
       skills: "Ubumenyi n'Ubuhanga",
       education: "Amashuri n'Impamyabumenyi",
       contact: "Tuvugane",
@@ -352,6 +398,27 @@ export const DATA: Record<Language, TranslationData> = {
         website: "https://www.w3schools.com/",
       },
     ],
+    projects: [
+      {
+        title: "RWANDA TOURIST ASSISTANT",
+        description: "Un compagnon de voyage alimenté par l'IA conçu pour aider les touristes à explorer la riche culture, les attractions et le patrimoine du Rwanda en toute facilité.",
+        image: "/images/rwanda-tour-image.jpg",
+        link: "https://rwanda-tour-ai.vercel.app",
+        tags: ["React", "AI", "Vercel", "Tailwind"],
+      },
+      {
+        title: "Projet 2",
+        description: "Innovation en cours. Un nouveau projet est actuellement en développement pour résoudre des défis du monde réel.",
+        image: "/images/guide-fix-image.png",
+        status: "Prochainement",
+      },
+      {
+        title: "Projet 3",
+        description: "Explorer de nouveaux horizons. Restez à l'écoute pour un prochain projet axé sur la robotique.",
+        image: "/images/logo.png",
+        status: "Prochainement",
+      },
+    ],
     certifications: [
       "Certifié en Cybersécurité — ISC2 (2022)",
       "Certificat d'apprentissage IOC — Jeunes leaders du CIO (2024)",
@@ -369,6 +436,7 @@ export const DATA: Record<Language, TranslationData> = {
     ],
     nav: {
       experience: "Expérience",
+      projects: "Projets",
       skills: "Compétences",
       education: "Éducation",
       contact: "Contact",
@@ -376,6 +444,7 @@ export const DATA: Record<Language, TranslationData> = {
     },
     sections: {
       experience: "Expérience Professionnelle",
+      projects: "Projets Phares",
       skills: "Compétences & Expertise",
       education: "Éducation & Certifications",
       contact: "Contactez-moi",
