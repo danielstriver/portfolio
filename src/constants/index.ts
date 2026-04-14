@@ -15,9 +15,9 @@ export const COMMON_INFO = {
     height: 960,
   },
   socials: [
-    { name: "Instagram", url: "https://www.instagram.com/danielthepentester/" },
     { name: "LinkedIn", url: "https://www.linkedin.com/in/daniel-niyomugenga/" },
     { name: "GitHub", url: "https://github.com/danielstriver" },
+    { name: "Instagram", url: "https://www.instagram.com/danielthepentester/" },
   ],
 };
 
