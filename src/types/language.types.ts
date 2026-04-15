@@ -17,6 +17,15 @@ export interface EducationItem {
   website?: string;
 }
 
+export interface ProjectItem {
+  title: string;
+  description: string;
+  image: string;
+  link?: string;
+  tags?: string[];
+  status?: string;
+}
+
 export interface SkillGroup {
   category: string;
   items: string[];
@@ -27,6 +36,7 @@ export interface TranslationData {
   about: string;
   experience: ExperienceItem[];
   education: EducationItem[];
+  projects: ProjectItem[];
   certifications: string[];
   skills: SkillGroup[];
   nav: Record<string, string>;
