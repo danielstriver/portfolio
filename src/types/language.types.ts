@@ -31,12 +31,19 @@ export interface SkillGroup {
   items: string[];
 }
 
+export interface GalleryItem {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
 export interface TranslationData {
   title: string;
   about: string;
   experience: ExperienceItem[];
   education: EducationItem[];
   projects: ProjectItem[];
+  gallery: GalleryItem[];
   certifications: string[];
   skills: SkillGroup[];
   nav: Record<string, string>;

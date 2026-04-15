@@ -109,6 +109,16 @@ export const DATA: Record<Language, TranslationData> = {
         status: "Coming Soon",
       },
     ],
+    gallery: [
+      { src: "/images/Gallery/daniel 1.jpg", alt: "Daniel at a Tech Event", caption: "Leading Tech Initiatives" },
+      { src: "/images/Gallery/20220524_155239.jpg", alt: "Daniel with Robot", caption: "Robotics Research Days" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.00.jpeg", alt: "Daniel in the Lab", caption: "Innovation in Progress" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.01.jpeg", alt: "Daniel Presentation", caption: "Sharing Knowledge" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.02.jpeg", alt: "Daniel Programming", caption: "Coding the Future" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.03.jpeg", alt: "Daniel Group Photo", caption: "Team Collaboration" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.04.jpeg", alt: "Daniel with Mentors", caption: "Learning from the Best" },
+      { src: "/images/Gallery/20220524_103421.jpg", alt: "Early Robotics Days", caption: "Where it all Started" },
+    ],
     certifications: [
       "Certified in Cybersecurity — ISC2 (2022)",
       "IOC Learning Sprint Certificate — IOC Young Leaders (2024)",
@@ -127,6 +137,7 @@ export const DATA: Record<Language, TranslationData> = {
     nav: {
       experience: "Experience",
       projects: "Projects",
+      gallery: "Gallery",
       skills: "Skills",
       education: "Education",
       contact: "Contact",
@@ -135,6 +146,7 @@ export const DATA: Record<Language, TranslationData> = {
     sections: {
       experience: "Professional Experience",
       projects: "Featured Projects",
+      gallery: "Moments & Memories",
       skills: "Skills & Expertise",
       education: "Education & Certifications",
       contact: "Get in Touch",
@@ -264,6 +276,16 @@ export const DATA: Record<Language, TranslationData> = {
         status: "Uzaza vuba",
       },
     ],
+    gallery: [
+      { src: "/images/Gallery/daniel 1.jpg", alt: "Daniel mu gikorwa cya tekiniki", caption: "Kuyobora Ibikorwa by'Ikoranabuhanga" },
+      { src: "/images/Gallery/20220524_155239.jpg", alt: "Daniel ari kumwe na Robot", caption: "Iminsi y'Ubushakashatsi kuri Robotics" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.00.jpeg", alt: "Daniel muri laboratwari", caption: "Guhanga Udushya Turakomeje" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.01.jpeg", alt: "Daniel atanga ikiganiro", caption: "Gusangira Ubumenyi" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.02.jpeg", alt: "Daniel akora porogaramu", caption: "Kubaka Ejo Hazaza" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.03.jpeg", alt: "Ifoto y'ikipe", caption: "Gukorera hamwe mu Ikipe" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.04.jpeg", alt: "Daniel n'abamufasha", caption: "Kwigira ku Bazobereye" },
+      { src: "/images/Gallery/20220524_103421.jpg", alt: "Iminsi ya mbere ya robotics", caption: "Aho Byatangiye Hose" },
+    ],
     certifications: [
       "Impamyabumenyi muri Cybersecurity — ISC2 (2022)",
       "Icyemezo cya IOC Learning Sprint — IOC Young Leaders (2024)",
@@ -282,6 +304,7 @@ export const DATA: Record<Language, TranslationData> = {
     nav: {
       experience: "Inararibonye",
       projects: "Imishinga",
+      gallery: "Igalari",
       skills: "Ubumenyi",
       education: "Amashuri",
       contact: "Twandikire",
@@ -290,6 +313,7 @@ export const DATA: Record<Language, TranslationData> = {
     sections: {
       experience: "Inararibonye mu Kazi",
       projects: "Imishinga Y'ingenzi",
+      gallery: "Ibihe n'Inzibutso",
       skills: "Ubumenyi n'Ubuhanga",
       education: "Amashuri n'Impamyabumenyi",
       contact: "Tuvugane",
@@ -419,6 +443,16 @@ export const DATA: Record<Language, TranslationData> = {
         status: "Prochainement",
       },
     ],
+    gallery: [
+      { src: "/images/Gallery/daniel 1.jpg", alt: "Daniel lors d'un événement technologique", caption: "Direction d'initiatives technologiques" },
+      { src: "/images/Gallery/20220524_155239.jpg", alt: "Daniel avec un robot", caption: "Journées de recherche en robotique" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.00.jpeg", alt: "Daniel dans le laboratoire", caption: "Innovation en cours" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.01.jpeg", alt: "Présentation de Daniel", caption: "Partage de connaissances" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.02.jpeg", alt: "Daniel en train de programmer", caption: "Coder l'avenir" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.03.jpeg", alt: "Photo d'équipe", caption: "Collaboration d'équipe" },
+      { src: "/images/Gallery/WhatsApp Image 2026-04-15 at 05.54.04.jpeg", alt: "Daniel avec des mentors", caption: "Apprendre des meilleurs" },
+      { src: "/images/Gallery/20220524_103421.jpg", alt: "Premiers jours en robotique", caption: "Là où tout a commencé" },
+    ],
     certifications: [
       "Certifié en Cybersécurité — ISC2 (2022)",
       "Certificat d'apprentissage IOC — Jeunes leaders du CIO (2024)",
@@ -437,6 +471,7 @@ export const DATA: Record<Language, TranslationData> = {
     nav: {
       experience: "Expérience",
       projects: "Projets",
+      gallery: "Galerie",
       skills: "Compétences",
       education: "Éducation",
       contact: "Contact",
@@ -445,6 +480,7 @@ export const DATA: Record<Language, TranslationData> = {
     sections: {
       experience: "Expérience Professionnelle",
       projects: "Projets Phares",
+      gallery: "Moments & Souvenirs",
       skills: "Compétences & Expertise",
       education: "Éducation & Certifications",
       contact: "Contactez-moi",
