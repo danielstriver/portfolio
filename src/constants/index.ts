@@ -97,10 +97,11 @@ export const DATA: Record<Language, TranslationData> = {
         tags: ["React", "AI", "Vercel", "Tailwind"],
       },
       {
-        title: "Project 2",
-        description: "Innovation in progress. A new project is currently under development to solve real-world challenges.",
-        image: "/images/guide-fix-image.png",
-        status: "Coming Soon",
+        title: "PowerSync",
+        description: "A decentralized energy platform for Rwanda that integrates IoT smart meters with mobile payment systems. It provides real-time monitoring and pay-as-you-go access to renewable solar energy, eliminating grid dependency.",
+        image: "/images/project2-image.jpeg",
+        link: "https://powersync-rw.vercel.app/",
+        tags: ["React", "IoT", "FinTech", "Tailwind"],
       },
       {
         title: "Project 3",
@@ -448,10 +449,11 @@ export const DATA: Record<Language, TranslationData> = {
         tags: ["React", "AI", "Vercel", "Tailwind"],
       },
       {
-        title: "Projet 2",
-        description: "Innovation en cours. Un nouveau projet est actuellement en développement pour résoudre des défis du monde réel.",
-        image: "/images/guide-fix-image.png",
-        status: "Prochainement",
+        title: "PowerSync",
+        description: "Une plateforme d'énergie décentralisée pour le Rwanda qui intègre des compteurs intelligents IoT aux systèmes de paiement mobile. Elle permet une surveillance en temps réel et un accès prépayé à l'énergie solaire renouvelable, éliminant la dépendance au réseau national.",
+        image: "/images/project2-image.jpeg",
+        link: "https://powersync-rw.vercel.app/",
+        tags: ["React", "IoT", "FinTech", "Tailwind"],
       },
       {
         title: "Projet 3",
