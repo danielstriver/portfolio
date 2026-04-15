@@ -163,11 +163,8 @@ export const Gallery = () => {
                 className="max-h-[90vh] w-auto object-contain"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-8 text-center">
-                <h3 className="text-xl font-bold text-white mb-2">
-                  {selectedImage.caption}
-                </h3>
-                <p className="text-sm text-white/60">
-                  {selectedIndex + 1} / {galleryItems.length} — {selectedImage.alt}
+                <p className="text-sm font-medium text-white/60">
+                  {selectedIndex + 1} / {galleryItems.length}
                 </p>
               </div>
             </motion.div>
