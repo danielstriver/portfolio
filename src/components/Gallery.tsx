@@ -1,13 +1,57 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { X, Maximize2 } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { X, Maximize2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "../hooks/useTranslation";
 import type { GalleryItem } from "../types/language.types";
 
 export const Gallery = () => {
   const { t } = useTranslation();
   const galleryItems = t("gallery") as GalleryItem[];
-  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const handlePrevious = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
+    e?.stopPropagation();
+    setSelectedIndex((prev) => 
+      prev !== null ? (prev - 1 + galleryItems.length) % galleryItems.length : null
+    );
+  }, [galleryItems.length]);
+
+  const handleNext = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
+    e?.stopPropagation();
+    setSelectedIndex((prev) => 
+      prev !== null ? (prev + 1) % galleryItems.length : null
+    );
+  }, [galleryItems.length]);
+
+  const handleClose = useCallback(() => {
+    setSelectedIndex(null);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedIndex === null) return;
+      if (e.key === "ArrowLeft") handlePrevious(e);
+      if (e.key === "ArrowRight") handleNext(e);
+      if (e.key === "Escape") handleClose();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedIndex, handlePrevious, handleNext, handleClose]);
+
+  // Lock body scroll when lightbox is open
+  useEffect(() => {
+    if (selectedIndex !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedIndex]);
+
+  const selectedImage = selectedIndex !== null ? galleryItems[selectedIndex] : null;
 
   return (
     <section id="gallery" className="relative overflow-hidden px-4 py-24 bg-[var(--surface)]">
@@ -39,7 +83,7 @@ export const Gallery = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               className="group relative break-inside-avoid overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)] transition-all hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer"
-              onClick={() => setSelectedImage(item)}
+              onClick={() => setSelectedIndex(index)}
             >
               <div className="relative overflow-hidden">
                 <img
@@ -66,31 +110,50 @@ export const Gallery = () => {
 
       {/* Lightbox */}
       <AnimatePresence>
-        {selectedImage && (
+        {selectedIndex !== null && selectedImage && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm"
-            onClick={() => setSelectedImage(null)}
+            onClick={handleClose}
           >
+            {/* Close Button */}
             <motion.button
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.5 }}
               className="absolute right-6 top-6 z-[110] rounded-full bg-white/10 p-3 text-white backdrop-blur-xl hover:bg-white/20 transition-colors"
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedImage(null);
-              }}
+              onClick={handleClose}
             >
               <X size={24} />
             </motion.button>
 
+            {/* Navigation Buttons */}
+            <div className="absolute inset-x-4 top-1/2 z-[110] flex -translate-y-1/2 justify-between pointer-events-none">
+              <button
+                className="pointer-events-auto rounded-full bg-white/10 p-4 text-white backdrop-blur-xl hover:bg-white/20 transition-all hover:scale-110 active:scale-95"
+                onClick={handlePrevious}
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={32} />
+              </button>
+              <button
+                className="pointer-events-auto rounded-full bg-white/10 p-4 text-white backdrop-blur-xl hover:bg-white/20 transition-all hover:scale-110 active:scale-95"
+                onClick={handleNext}
+                aria-label="Next image"
+              >
+                <ChevronRight size={32} />
+              </button>
+            </div>
+
+            {/* Image Container */}
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              key={selectedIndex}
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -100, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="relative max-h-[90vh] max-w-[95vw] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50"
               onClick={(e) => e.stopPropagation()}
             >
@@ -104,7 +167,7 @@ export const Gallery = () => {
                   {selectedImage.caption}
                 </h3>
                 <p className="text-sm text-white/60">
-                  {selectedImage.alt}
+                  {selectedIndex + 1} / {galleryItems.length} — {selectedImage.alt}
                 </p>
               </div>
             </motion.div>
