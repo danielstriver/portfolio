@@ -4,6 +4,7 @@ export const COMMON_INFO = {
   name: "Daniel NIYOMUGENGA",
   email: "daniel.succeeder@gmail.com",
   phone: "+250 791832842",
+  whatsappUrl: "https://wa.me/250791832842",
   address: "KN 183 ST, KN 222 ST, Kigali, Rwanda",
   nationality: "Rwandan",
   dob: "June 16",
@@ -223,8 +224,8 @@ export const DATA: Record<Language, TranslationData> = {
       builtFor: "For:",
       beyondCodeLabel: "// beyond code",
       beyondCodeHeadline: "When I'm not building",
-      beyondCodeCopy: "You'll find me running Kigali's hills, walking the premium district near the Convention Centre, or at a car show catching the latest models. I believe the best engineers stay curious — and staying in motion keeps the ideas flowing.",
-      beyondCodeTags: "🏃 Running|🚶 Walking Kigali|🚗 Car Shows|🌆 City Exploring|☕ Coffee Chats|📚 Reading",
+      beyondCodeCopy: "You'll find me running Kigali's hills, walking the premium district near the Convention Centre, or deep in a YouTube rabbit hole watching car shows — new model reveals, reviews, and restomods. I believe the best engineers stay curious — and staying in motion keeps the ideas flowing.",
+      beyondCodeTags: "🏃 Running|🚶 Walking Kigali|🚗 YouTube Car Shows|🌆 City Exploring|☕ Coffee Chats|📚 Reading",
     }
   },
   rw: {
@@ -427,8 +428,8 @@ export const DATA: Record<Language, TranslationData> = {
       builtFor: "Yubatswe kuri:",
       beyondCodeLabel: "// hanze y'amakode",
       beyondCodeHeadline: "Igihe ntubaka",
-      beyondCodeCopy: "Ubona nkora joginge ku misozi ya Kigali, ngerageza inzira za CBD hafi ya Convention Centre, cyangwa mu marushanwa y'imodoka. Nizeye ko injeniyeri nziza zisigara zifite ubushake — kuguma mu ngendo bitera ibitekerezo bishya.",
-      beyondCodeTags: "🏃 Joginge|🚶 Kugenda Kigali|🚗 Marushanwa y'Imodoka|🌆 Gushakashaka Umujyi|☕ Ikiganiro na Kawa|📚 Gusoma",
+      beyondCodeCopy: "Ubona nkora joginge ku misozi ya Kigali, ngerageza inzira za CBD hafi ya Convention Centre, cyangwa nreba inyandamutoranyamudiho z'imodoka kuri YouTube — imodoka nshya, ibigereranyo, n'imodoka zasubijwe imiterere. Nizeye ko injeniyeri nziza zisigara zifite ubushake — kuguma mu ngendo bitera ibitekerezo bishya.",
+      beyondCodeTags: "🏃 Joginge|🚶 Kugenda Kigali|🚗 Imodoka kuri YouTube|🌆 Gushakashaka Umujyi|☕ Ikiganiro na Kawa|📚 Gusoma",
     }
   },
   fr: {
@@ -631,8 +632,8 @@ export const DATA: Record<Language, TranslationData> = {
       builtFor: "Pour :",
       beyondCodeLabel: "// au-delà du code",
       beyondCodeHeadline: "Quand je ne construis pas",
-      beyondCodeCopy: "Vous me trouverez en train de courir dans les collines de Kigali, de parcourir le quartier premium près du Centre de Conférences, ou à un show automobile pour voir les derniers modèles. Je crois que les meilleurs ingénieurs restent curieux — et rester en mouvement, c'est garder les idées vivantes.",
-      beyondCodeTags: "🏃 Running|🚶 Marche à Kigali|🚗 Shows Automobiles|🌆 Explorer la Ville|☕ Cafés Talks|📚 Lecture",
+      beyondCodeCopy: "Vous me trouverez en train de courir dans les collines de Kigali, de parcourir le quartier premium près du Centre de Conférences, ou plongé dans YouTube à regarder des émissions automobiles — révélations de nouveaux modèles, critiques et restomods. Je crois que les meilleurs ingénieurs restent curieux — et rester en mouvement, c'est garder les idées vivantes.",
+      beyondCodeTags: "🏃 Running|🚶 Marche à Kigali|🚗 Car Shows YouTube|🌆 Explorer la Ville|☕ Cafés Talks|📚 Lecture",
     }
   },
 };

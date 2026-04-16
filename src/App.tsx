@@ -14,6 +14,7 @@ import { SocialLinks } from "./components/SocialLinks";
 import { useTranslation } from "./hooks/useTranslation";
 import { COMMON_INFO } from "./constants";
 import { VisitorCounter } from "./components/VisitorCounter";
+import { WhatsAppButton } from "./components/WhatsAppButton";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -60,6 +61,8 @@ function App() {
         <Contact />
       </main>
 
+      <WhatsAppButton />
+
       <AnimatePresence>
         {showScrollTop && (
           <motion.button
@@ -67,7 +70,7 @@ function App() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-50 cursor-pointer rounded-full border border-[var(--border)] bg-[var(--card-strong)] p-4 text-primary shadow-[var(--shadow)] backdrop-blur-md transition-all hover:border-primary/40 hover:bg-[var(--surface-strong)]"
+            className="fixed bottom-[6.5rem] right-8 z-50 cursor-pointer rounded-full border border-[var(--border)] bg-[var(--card-strong)] p-4 text-primary shadow-[var(--shadow)] backdrop-blur-md transition-all hover:border-primary/40 hover:bg-[var(--surface-strong)]"
             aria-label="Scroll back to top"
           >
             <ArrowUp size={24} />
