@@ -1,4 +1,4 @@
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "../hooks/useTheme";
@@ -119,34 +119,40 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {isMobileMenuOpen && (
-        <motion.div
-          id="mobile-navigation"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute left-0 right-0 top-full border-b border-[var(--border)] bg-[var(--card-strong)] p-6 backdrop-blur-xl md:hidden"
-        >
-          <div className="flex flex-col gap-4">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-base font-medium text-muted-foreground"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              className="inline-flex w-fit rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {t("nav.hireMe")}
-            </a>
-          </div>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            id="mobile-navigation"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.18 }}
+            className="absolute left-0 right-0 top-full border-b border-[var(--border)] bg-[var(--card-strong)] px-6 py-5 backdrop-blur-xl md:hidden"
+          >
+            <div className="flex flex-col gap-1">
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="rounded-xl px-3 py-2.5 text-base font-medium text-muted-foreground transition-colors hover:bg-primary/8 hover:text-foreground"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ))}
+              <div className="mt-3 pt-3 border-t border-[var(--border)]">
+                <a
+                  href="#contact"
+                  className="inline-flex w-fit rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground hover:opacity-90 transition-opacity"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {t("nav.hireMe")}
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

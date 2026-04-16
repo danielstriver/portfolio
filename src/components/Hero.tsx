@@ -28,15 +28,15 @@ export const Hero = () => {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl">
-        {/* Photo stacks on top on mobile, side-by-side on md+ */}
-        <div className="flex flex-col items-center gap-14 md:flex-row md:items-center md:justify-between md:gap-12">
+        {/* Image first on mobile, side-by-side on md+ */}
+        <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:justify-between md:gap-12">
 
-          {/* ── LEFT: Text ── */}
+          {/* ── LEFT on md+: Text ── */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.75, ease: "easeOut" }}
-            className="flex flex-col items-center text-center md:items-start md:text-left flex-1"
+            className="order-2 md:order-1 flex flex-col items-center text-center md:items-start md:text-left flex-1"
           >
             {/* Status pill */}
             <motion.div
@@ -139,12 +139,12 @@ export const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* ── RIGHT: Circular profile photo ── */}
+          {/* ── RIGHT on md+: Circular profile photo ── */}
           <motion.div
             initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.85, ease: "easeOut" }}
-            className="relative flex-shrink-0"
+            className="order-1 md:order-2 relative flex-shrink-0"
           >
             <div className="relative h-64 w-64 md:h-80 md:w-80 lg:h-[22rem] lg:w-[22rem]">
               {/* Outer spinning dashed ring */}

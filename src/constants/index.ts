@@ -204,7 +204,7 @@ export const DATA: Record<Language, TranslationData> = {
     },
     footer: {
       rights: "All rights reserved.",
-      visits: "Website Visits",
+      visits: "Visitors",
     },
     ui: {
       welcome: "Welcome to my portfolio",
@@ -415,7 +415,7 @@ export const DATA: Record<Language, TranslationData> = {
     },
     footer: {
       rights: "Uburenganzira bwose burasigasigwa.",
-      visits: "Abasuye Urubuga",
+      visits: "Abashyitsi",
     },
     ui: {
       welcome: "Murakaza neza ku rubuga rwanjye",
@@ -626,7 +626,7 @@ export const DATA: Record<Language, TranslationData> = {
     },
     footer: {
       rights: "Tous droits réservés.",
-      visits: "Visites du Site",
+      visits: "Visiteurs",
     },
     ui: {
       welcome: "Bienvenue sur mon portfolio",
@@ -837,7 +837,7 @@ export const DATA: Record<Language, TranslationData> = {
     },
     footer: {
       rights: "Todos los derechos reservados.",
-      visits: "Visitas al Sitio",
+      visits: "Visitantes",
     },
     ui: {
       welcome: "Bienvenido a mi portafolio",
@@ -1048,7 +1048,7 @@ export const DATA: Record<Language, TranslationData> = {
     },
     footer: {
       rights: "Alle Rechte vorbehalten.",
-      visits: "Website-Besuche",
+      visits: "Besucher",
     },
     ui: {
       welcome: "Willkommen in meinem Portfolio",
@@ -1259,7 +1259,7 @@ export const DATA: Record<Language, TranslationData> = {
     },
     footer: {
       rights: "Todos os direitos reservados.",
-      visits: "Visitas ao Site",
+      visits: "Visitantes",
     },
     ui: {
       welcome: "Bem-vindo ao meu portfólio",
