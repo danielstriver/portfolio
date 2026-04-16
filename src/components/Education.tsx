@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "../hooks/useTranslation";
 import type { CertificationItem, EducationItem } from "../types/language.types";
-import { GraduationCap, ExternalLink, Shield, Trophy, Star, Cpu, FlaskConical } from "lucide-react";
+import { GraduationCap, ExternalLink, Shield, Trophy, Star, Cpu, FlaskConical, Sparkles } from "lucide-react";
 
 const CERT_ICONS: { match: string; icon: React.ReactNode; color: string }[] = [
   { match: "ISC2",     icon: <Shield size={16} />,       color: "text-sky-500 bg-sky-500/10 border-sky-500/20" },
@@ -55,37 +55,80 @@ export const Education = () => {
             </h3>
 
             <div className="space-y-4">
-              {education.map((edu, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 transition-all hover:border-primary/25 hover:bg-[var(--card-strong)]"
-                >
-                  <div className="flex items-start justify-between gap-3 mb-1">
-                    <h4 className="text-base font-bold leading-snug text-foreground group-hover:text-primary transition-colors">
-                      {edu.degree}
-                    </h4>
-                    <span className="shrink-0 rounded-full border border-[var(--border)] bg-[var(--surface)] px-2.5 py-0.5 text-[11px] font-semibold text-muted-foreground">
-                      {edu.period}
-                    </span>
-                  </div>
-                  <p className="mb-3 text-sm text-muted-foreground">{edu.institution}</p>
-                  {edu.website && (
-                    <a
-                      href={edu.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs text-muted-foreground/60 hover:text-primary transition-colors"
-                    >
-                      <ExternalLink size={11} />
-                      {new URL(edu.website).hostname}
-                    </a>
-                  )}
-                </motion.div>
-              ))}
+              {education.map((edu, index) =>
+                edu.type === "continuous" ? (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="group relative overflow-hidden rounded-2xl border border-violet-500/40 bg-gradient-to-br from-violet-500/5 via-[var(--card)] to-amber-500/5 p-5 transition-all hover:border-violet-400/60 hover:shadow-[0_0_28px_rgba(139,92,246,0.12)]"
+                  >
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-500/0 via-violet-500/5 to-amber-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    <div className="relative">
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <div className="flex items-center gap-2">
+                          <Sparkles size={15} className="text-violet-400 shrink-0 mt-0.5" />
+                          <h4 className="text-base font-bold leading-snug text-foreground group-hover:text-violet-400 transition-colors">
+                            {edu.degree}
+                          </h4>
+                        </div>
+                        <div className="flex items-center gap-1.5 shrink-0 rounded-full border border-violet-500/30 bg-violet-500/10 px-2.5 py-1">
+                          <span className="relative flex h-1.5 w-1.5">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75" />
+                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-violet-500" />
+                          </span>
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-violet-400">Live</span>
+                        </div>
+                      </div>
+                      <p className="mb-3 text-sm text-muted-foreground pl-5">{edu.institution}</p>
+                      {edu.tags && (
+                        <div className="flex flex-wrap gap-1.5 pl-5">
+                          {edu.tags.map((tag: string) => (
+                            <span
+                              key={tag}
+                              className="rounded-full border border-violet-500/25 bg-violet-500/10 px-2 py-0.5 text-[11px] font-medium text-violet-400"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="group rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 transition-all hover:border-primary/25 hover:bg-[var(--card-strong)]"
+                  >
+                    <div className="flex items-start justify-between gap-3 mb-1">
+                      <h4 className="text-base font-bold leading-snug text-foreground group-hover:text-primary transition-colors">
+                        {edu.degree}
+                      </h4>
+                      <span className="shrink-0 rounded-full border border-[var(--border)] bg-[var(--surface)] px-2.5 py-0.5 text-[11px] font-semibold text-muted-foreground">
+                        {edu.period}
+                      </span>
+                    </div>
+                    <p className="mb-3 text-sm text-muted-foreground">{edu.institution}</p>
+                    {edu.website && (
+                      <a
+                        href={edu.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs text-muted-foreground/60 hover:text-primary transition-colors"
+                      >
+                        <ExternalLink size={11} />
+                        {new URL(edu.website).hostname}
+                      </a>
+                    )}
+                  </motion.div>
+                )
+              )}
             </div>
           </div>
 

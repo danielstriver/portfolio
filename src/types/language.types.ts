@@ -1,4 +1,4 @@
-export const languages = ["en", "rw", "fr"] as const;
+export const languages = ["en", "rw", "fr", "es", "de", "pt"] as const;
 
 export type Language = (typeof languages)[number];
 
@@ -15,6 +15,8 @@ export interface EducationItem {
   institution: string;
   period: string;
   website?: string;
+  type?: string;
+  tags?: string[];
 }
 
 export interface ProjectItem {
