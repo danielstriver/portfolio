@@ -20,6 +20,7 @@ export const Navbar = () => {
   const themeLabel = isDarkMode ? "Switch to light mode" : "Switch to dark mode";
 
   const NAV_LINKS = [
+    { name: t("nav.about"), href: "#about" },
     { name: t("nav.experience"), href: "#experience" },
     { name: t("nav.projects"), href: "#projects" },
     { name: t("nav.skills"), href: "#skills" },
@@ -51,9 +52,6 @@ export const Navbar = () => {
           />
           <div className="hidden sm:block text-left">
             <div className="text-sm font-bold tracking-[0.24em] text-foreground">DANIEL</div>
-            <div className="text-[0.68rem] uppercase tracking-[0.32em] text-muted-foreground">
-              Engineer Portfolio
-            </div>
           </div>
         </motion.a>
 

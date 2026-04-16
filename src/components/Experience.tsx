@@ -17,8 +17,10 @@ export const Experience = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
+          <p className="mb-3 font-mono text-sm font-medium text-primary tracking-widest">// experience</p>
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">{t("sections.experience")}</h2>
-          <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
+          <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-primary to-violet-500 mb-5" />
+          <p className="mx-auto max-w-xl text-base text-muted-foreground">{t("sections.experienceTagline")}</p>
         </motion.div>
 
         <div className="relative">
@@ -56,9 +58,10 @@ export const Experience = () => {
                       </div>
                     </div>
 
-                    <ul className="list-none space-y-2 text-sm text-muted-foreground">
+                    <ul className="space-y-2 text-sm text-muted-foreground">
                       {exp.description.map((item: string, i: number) => (
-                        <li key={i} className="leading-relaxed">
+                        <li key={i} className="flex items-start gap-2.5 leading-relaxed">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
                           {item}
                         </li>
                       ))}

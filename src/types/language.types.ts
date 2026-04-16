@@ -22,8 +22,15 @@ export interface ProjectItem {
   description: string;
   image: string;
   link?: string;
+  github?: string;
   tags?: string[];
   status?: string;
+  /** "Solo" | "Team" */
+  type?: string;
+  /** One-liner pain statement shown above the title */
+  problem?: string;
+  /** Short "who is it for" phrase */
+  target?: string;
 }
 
 export interface SkillGroup {
@@ -37,6 +44,12 @@ export interface GalleryItem {
   caption?: string;
 }
 
+export interface CertificationItem {
+  name: string;
+  issuer: string;
+  year: number;
+}
+
 export interface TranslationData {
   title: string;
   about: string;
@@ -44,7 +57,7 @@ export interface TranslationData {
   education: EducationItem[];
   projects: ProjectItem[];
   gallery: GalleryItem[];
-  certifications: string[];
+  certifications: CertificationItem[];
   skills: SkillGroup[];
   nav: Record<string, string>;
   sections: Record<string, string>;

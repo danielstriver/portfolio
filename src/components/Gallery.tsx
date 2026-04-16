@@ -1,170 +1,273 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
-import { X, Maximize2, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Expand } from "lucide-react";
 import { useTranslation } from "../hooks/useTranslation";
 import type { GalleryItem } from "../types/language.types";
+
+// Walk/lifestyle photos — language-independent
+const WALK_PHOTOS = [
+  { src: "/images/Gallery/walk/kigali-walk-1.jpeg", alt: "Walking near Kigali Convention Centre" },
+  { src: "/images/Gallery/walk/kigali-walk-2.jpeg", alt: "Exploring Kigali's premium district" },
+  { src: "/images/Gallery/walk/kigali-walk-3.jpeg", alt: "Kigali city walk" },
+  { src: "/images/Gallery/walk/kigali-walk-4.jpeg", alt: "Around Kigali Convention Centre" },
+];
 
 export const Gallery = () => {
   const { t } = useTranslation();
   const galleryItems = t("gallery") as GalleryItem[];
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-  const handlePrevious = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
+  // Merge all photos into a flat list for the lightbox
+  const allPhotos: { src: string; alt: string; caption?: string }[] = [
+    ...galleryItems,
+    ...WALK_PHOTOS,
+  ];
+
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const openLightbox = (index: number) => setLightboxIndex(index);
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+
+  const gotoPrev = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
     e?.stopPropagation();
-    setSelectedIndex((prev) => 
-      prev !== null ? (prev - 1 + galleryItems.length) % galleryItems.length : null
+    setLightboxIndex((i) =>
+      i !== null ? (i - 1 + allPhotos.length) % allPhotos.length : null
     );
-  }, [galleryItems.length]);
+  }, [allPhotos.length]);
 
-  const handleNext = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
+  const gotoNext = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
     e?.stopPropagation();
-    setSelectedIndex((prev) => 
-      prev !== null ? (prev + 1) % galleryItems.length : null
+    setLightboxIndex((i) =>
+      i !== null ? (i + 1) % allPhotos.length : null
     );
-  }, [galleryItems.length]);
-
-  const handleClose = useCallback(() => {
-    setSelectedIndex(null);
-  }, []);
+  }, [allPhotos.length]);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (selectedIndex === null) return;
-      if (e.key === "ArrowLeft") handlePrevious(e);
-      if (e.key === "ArrowRight") handleNext(e);
-      if (e.key === "Escape") handleClose();
+    const onKey = (e: KeyboardEvent) => {
+      if (lightboxIndex === null) return;
+      if (e.key === "ArrowLeft") gotoPrev(e);
+      if (e.key === "ArrowRight") gotoNext(e);
+      if (e.key === "Escape") closeLightbox();
     };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxIndex, gotoPrev, gotoNext, closeLightbox]);
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedIndex, handlePrevious, handleNext, handleClose]);
-
-  // Lock body scroll when lightbox is open
   useEffect(() => {
-    if (selectedIndex !== null) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [selectedIndex]);
+    document.body.style.overflow = lightboxIndex !== null ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [lightboxIndex]);
 
-  const selectedImage = selectedIndex !== null ? galleryItems[selectedIndex] : null;
+  const hobbyTags = (t("ui.beyondCodeTags") as string).split("|");
 
   return (
-    <section id="gallery" className="relative overflow-hidden px-4 py-24 bg-[var(--surface)]">
-      {/* Background Glow */}
-      <div className="absolute right-0 top-0 -translate-y-1/2 translate-x-1/2 blur-[150px] pointer-events-none z-[-1]">
-        <div className="h-[500px] w-[500px] rounded-full bg-primary/5 opacity-20" />
+    <section id="gallery" className="relative overflow-hidden px-6 py-24 bg-[var(--surface)]">
+      {/* Ambient glow */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute right-0 top-0 h-[400px] w-[400px] translate-x-1/3 -translate-y-1/3 rounded-full bg-primary/6 blur-[120px]" />
+        <div className="absolute left-0 bottom-0 h-[400px] w-[400px] -translate-x-1/3 translate-y-1/3 rounded-full bg-violet-500/5 blur-[120px]" />
       </div>
 
-      <div className="mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto max-w-6xl">
+        {/* ── Section header ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
           className="mb-16 text-center"
         >
+          <p className="mb-3 font-mono text-sm font-medium text-primary tracking-widest">
+            // moments
+          </p>
           <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
             {t("sections.gallery")}
           </h2>
-          <div className="mx-auto h-1.5 w-24 rounded-full bg-primary shadow-[0_0_15px_rgba(var(--primary-rgb),0.5)]" />
+          <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-primary to-violet-500" />
         </motion.div>
 
-        <div className="columns-1 gap-6 sm:columns-2 lg:columns-3 xl:columns-4 space-y-6">
-          {galleryItems.map((item, index) => (
+        {/* ── Work highlights — editorial 3-photo grid ── */}
+        <div className="mb-28 grid grid-cols-1 gap-4 md:grid-cols-2" style={{ gridTemplateRows: "auto auto" }}>
+          {/* Left: tall card spanning both rows */}
+          {galleryItems[0] && (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="group relative break-inside-avoid overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)] transition-all hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer"
-              onClick={() => setSelectedIndex(index)}
+              transition={{ duration: 0.6 }}
+              className="group relative cursor-pointer overflow-hidden rounded-3xl md:row-span-2"
+              onClick={() => openLightbox(0)}
             >
-              <div className="relative overflow-hidden">
+              <img
+                src={galleryItems[0].src}
+                alt={galleryItems[0].alt}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                style={{ minHeight: "320px", maxHeight: "560px" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-50 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="absolute bottom-0 left-0 right-0 translate-y-2 p-5 transition-transform duration-300 group-hover:translate-y-0">
+                <p className="text-sm font-semibold text-white/90">{galleryItems[0].caption}</p>
+              </div>
+              <div className="absolute right-4 top-4 rounded-full bg-black/30 p-2 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
+                <Expand size={15} />
+              </div>
+            </motion.div>
+          )}
+
+          {/* Right: two stacked cards */}
+          <div className="flex flex-col gap-4">
+            {galleryItems.slice(1).map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: (i + 1) * 0.1 }}
+                className="group relative cursor-pointer overflow-hidden rounded-3xl"
+                style={{ height: "260px" }}
+                onClick={() => openLightbox(i + 1)}
+              >
                 <img
                   src={item.src}
                   alt={item.alt}
-                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-6">
-                  <div className="flex items-center justify-between gap-4">
-                    <p className="text-sm font-medium text-white/90 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
-                      {item.caption}
-                    </p>
-                    <div className="rounded-full bg-primary/20 p-2 text-primary backdrop-blur-md border border-primary/30 translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
-                      <Maximize2 size={16} />
-                    </div>
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-50 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute bottom-0 left-0 right-0 translate-y-2 p-5 transition-transform duration-300 group-hover:translate-y-0">
+                  <p className="text-sm font-semibold text-white/90">{item.caption}</p>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+                <div className="absolute right-4 top-4 rounded-full bg-black/30 p-2 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
+                  <Expand size={15} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Beyond Code ── */}
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Left: copy */}
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="mb-3 font-mono text-sm font-medium text-primary tracking-widest">
+              {t("ui.beyondCodeLabel")}
+            </p>
+            <h3 className="mb-5 text-3xl font-bold tracking-tight md:text-4xl">
+              {/* Split on "not" / "ntubaka" / "ne construis pas" for gradient highlight */}
+              <BeyondCodeHeadline text={t("ui.beyondCodeHeadline") as string} />
+            </h3>
+            <p className="mb-8 text-base leading-relaxed text-muted-foreground">
+              {t("ui.beyondCodeCopy")}
+            </p>
+            <div className="flex flex-wrap gap-2.5">
+              {hobbyTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary/30 hover:bg-[var(--card-strong)]"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right: walk photos 2×2 grid */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="grid grid-cols-2 gap-3"
+          >
+            {WALK_PHOTOS.map((photo, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.96 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="group relative cursor-pointer overflow-hidden rounded-2xl"
+                style={{ height: "180px" }}
+                onClick={() => openLightbox(galleryItems.length + i)}
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute right-2 top-2 rounded-full bg-black/30 p-1.5 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
+                  <Expand size={13} />
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
-      {/* Lightbox */}
+      {/* ── Lightbox ── */}
       <AnimatePresence>
-        {selectedIndex !== null && selectedImage && (
+        {lightboxIndex !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm"
-            onClick={handleClose}
+            onClick={closeLightbox}
           >
-            {/* Close Button */}
-            <motion.button
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              className="absolute right-6 top-6 z-[110] rounded-full bg-white/10 p-3 text-white backdrop-blur-xl hover:bg-white/20 transition-colors"
-              onClick={handleClose}
+            <button
+              className="absolute right-5 top-5 z-[110] rounded-full bg-white/10 p-3 text-white backdrop-blur-xl hover:bg-white/20 transition-colors"
+              onClick={closeLightbox}
+              aria-label="Close"
             >
-              <X size={24} />
-            </motion.button>
+              <X size={22} />
+            </button>
 
-            {/* Navigation Buttons */}
             <div className="absolute inset-x-4 top-1/2 z-[110] flex -translate-y-1/2 justify-between pointer-events-none">
               <button
-                className="pointer-events-auto rounded-full bg-white/10 p-4 text-white backdrop-blur-xl hover:bg-white/20 transition-all hover:scale-110 active:scale-95"
-                onClick={handlePrevious}
-                aria-label="Previous image"
+                className="pointer-events-auto rounded-full bg-white/10 p-4 text-white backdrop-blur-xl hover:bg-white/20 transition-all hover:scale-105 active:scale-95"
+                onClick={gotoPrev}
+                aria-label="Previous"
               >
-                <ChevronLeft size={32} />
+                <ChevronLeft size={28} />
               </button>
               <button
-                className="pointer-events-auto rounded-full bg-white/10 p-4 text-white backdrop-blur-xl hover:bg-white/20 transition-all hover:scale-110 active:scale-95"
-                onClick={handleNext}
-                aria-label="Next image"
+                className="pointer-events-auto rounded-full bg-white/10 p-4 text-white backdrop-blur-xl hover:bg-white/20 transition-all hover:scale-105 active:scale-95"
+                onClick={gotoNext}
+                aria-label="Next"
               >
-                <ChevronRight size={32} />
+                <ChevronRight size={28} />
               </button>
             </div>
 
-            {/* Image Container */}
             <motion.div
-              key={selectedIndex}
-              initial={{ x: 100, opacity: 0 }}
+              key={lightboxIndex}
+              initial={{ x: 60, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -100, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="relative max-h-[90vh] max-w-[95vw] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50"
+              exit={{ x: -60, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 320, damping: 32 }}
+              className="relative max-h-[88vh] max-w-[92vw] overflow-hidden rounded-2xl border border-white/10 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <img
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                className="max-h-[90vh] w-auto object-contain"
+                src={allPhotos[lightboxIndex].src}
+                alt={allPhotos[lightboxIndex].alt}
+                className="max-h-[88vh] w-auto object-contain"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-8 text-center">
-                <p className="text-sm font-medium text-white/60">
-                  {selectedIndex + 1} / {galleryItems.length}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-6 py-4 text-center">
+                {"caption" in allPhotos[lightboxIndex] && (allPhotos[lightboxIndex] as GalleryItem).caption && (
+                  <p className="mb-1 text-sm font-medium text-white/90">
+                    {(allPhotos[lightboxIndex] as GalleryItem).caption}
+                  </p>
+                )}
+                <p className="text-xs text-white/40">
+                  {lightboxIndex + 1} / {allPhotos.length}
                 </p>
               </div>
             </motion.div>
@@ -174,3 +277,27 @@ export const Gallery = () => {
     </section>
   );
 };
+
+/* Highlights a keyword in the headline with a gradient span */
+function BeyondCodeHeadline({ text }: { text: string }) {
+  // Keywords to highlight in each language
+  const highlights = ["not", "ntubaka", "ne construis pas"];
+  for (const kw of highlights) {
+    const idx = text.toLowerCase().indexOf(kw);
+    if (idx !== -1) {
+      const before = text.slice(0, idx);
+      const match = text.slice(idx, idx + kw.length);
+      const after = text.slice(idx + kw.length);
+      return (
+        <>
+          {before}
+          <span className="bg-gradient-to-r from-primary to-violet-400 bg-clip-text text-transparent">
+            {match}
+          </span>
+          {after}
+        </>
+      );
+    }
+  }
+  return <>{text}</>;
+}
