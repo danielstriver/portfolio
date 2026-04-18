@@ -18,7 +18,7 @@ export const useContactForm = () => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
 
   const getErrorMessage = useCallback((error: unknown) =>
-    error instanceof Error ? error.message : t("contact.error"), [t]);
+    error instanceof Error ? error.message : t("contact.error") as string, [t]);
 
   const updateField = useCallback((field: keyof ContactFormValues, value: string) => {
     setValues((currentValues) => ({ ...currentValues, [field]: value }));
@@ -49,7 +49,7 @@ export const useContactForm = () => {
     if (!validationResult.success) {
       setStatus("error");
       setFieldErrors(validationResult.error.flatten().fieldErrors);
-      setFeedbackMessage(t("contact.error")); // Or a specific validation error message
+      setFeedbackMessage(t("contact.validationError") as string);
       return;
     }
 
@@ -71,12 +71,12 @@ export const useContactForm = () => {
       if (!response.ok || !result.success) {
         setStatus("error");
         setFieldErrors(result.success ? {} : result.fieldErrors ?? {});
-        setFeedbackMessage(t("contact.error"));
+        setFeedbackMessage(t("contact.error") as string);
         return;
       }
 
       setStatus("success");
-      setFeedbackMessage(t("contact.success"));
+      setFeedbackMessage(t("contact.success") as string);
       resetForm();
     } catch (error) {
       setStatus("error");

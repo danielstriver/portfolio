@@ -3,26 +3,20 @@ import { COMMON_INFO } from "../constants";
 import { useTranslation } from "../hooks/useTranslation";
 
 /** Bold-wraps specific technical phrases within a paragraph string. */
-function RichParagraph({ text }: { text: string }) {
-  const highlights = [
-    "Rwanda", "Mathematics, Physics, and Computer Science",
-    "New Life Christian High School", "CS Club",
-    "BSc in Computer Science", "University of Rwanda",
-    "College of Science and Technology", "AIMS",
-    "ISC2", "A2SV",
-    "Claude CLI", "Gemini CLI", "Codex CLI",
-    "agentic AI tools",
-  ];
+function RichParagraph({ text, highlights }: { text: string; highlights: string[] }) {
+  if (highlights.length === 0) {
+    return <p className="text-base leading-relaxed text-muted-foreground md:text-[1.05rem]">{text}</p>;
+  }
 
-  // Build a regex that matches any of the highlight phrases
   const escaped = highlights.map((h) => h.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
   const regex = new RegExp(`(${escaped.join("|")})`, "g");
   const parts = text.split(regex);
+  const highlightSet = new Set(highlights);
 
   return (
     <p className="text-base leading-relaxed text-muted-foreground md:text-[1.05rem]">
       {parts.map((part, i) =>
-        highlights.includes(part) ? (
+        highlightSet.has(part) ? (
           <strong key={i} className="font-semibold text-foreground">
             {part}
           </strong>
@@ -37,9 +31,10 @@ function RichParagraph({ text }: { text: string }) {
 export const About = () => {
   const { t } = useTranslation();
 
-  const aboutText: string = t("about");
+  const aboutText = t("about") as string;
   const paragraphs = aboutText.split("\n\n").filter(Boolean);
-  const tags: string[] = (t("ui.aboutTags") as string).split("|");
+  const tags = (t("ui.aboutTags") as string).split("|");
+  const highlights = (t("ui.aboutHighlights") as string).split("|").filter(Boolean);
 
   return (
     <section id="about" className="py-24 px-6 overflow-hidden">
@@ -54,12 +49,12 @@ export const About = () => {
           className="mb-16"
         >
           <p className="mb-4 font-mono text-sm font-medium text-primary tracking-widest">
-            {t("ui.aboutLabel")}
+            {t("ui.aboutLabel") as string}
           </p>
           <h2 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl leading-tight">
-            <span className="text-foreground">{t("ui.aboutHeadlineMain")} </span>
+            <span className="text-foreground">{t("ui.aboutHeadlineMain") as string} </span>
             <span className="bg-gradient-to-r from-primary via-violet-500 to-indigo-400 bg-clip-text text-transparent">
-              {t("ui.aboutHeadlineAccent")}
+              {t("ui.aboutHeadlineAccent") as string}
             </span>
           </h2>
         </motion.div>
@@ -101,10 +96,10 @@ export const About = () => {
               className="absolute bottom-5 right-5 lg:right-auto lg:-right-4 rounded-2xl border border-[var(--border)] bg-[var(--card-strong)] px-5 py-4 shadow-[var(--shadow)] backdrop-blur-xl"
             >
               <p className="text-3xl font-extrabold text-primary leading-none">
-                {t("ui.aboutStat")}
+                {t("ui.aboutStat") as string}
               </p>
               <p className="mt-1 text-xs font-medium text-muted-foreground leading-snug max-w-[8rem]">
-                {t("ui.aboutStatLabel")}
+                {t("ui.aboutStatLabel") as string}
               </p>
             </motion.div>
           </motion.div>
@@ -120,7 +115,7 @@ export const About = () => {
             {/* Story paragraphs */}
             <div className="space-y-5 mb-10">
               {paragraphs.map((para, i) => (
-                <RichParagraph key={i} text={para} />
+                <RichParagraph key={i} text={para} highlights={highlights} />
               ))}
             </div>
 

@@ -1,13 +1,14 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { CheckCircle2, AlertCircle } from "lucide-react";
+import { CheckCircle2, AlertCircle, X } from "lucide-react";
 
 type ToastProps = {
   message: string;
   tone: "success" | "error";
   visible: boolean;
+  onDismiss?: () => void;
 };
 
-export const Toast = ({ message, tone, visible }: ToastProps) => {
+export const Toast = ({ message, tone, visible, onDismiss }: ToastProps) => {
   const isSuccess = tone === "success";
 
   return (
@@ -26,7 +27,16 @@ export const Toast = ({ message, tone, visible }: ToastProps) => {
           ) : (
             <AlertCircle className="mt-0.5 shrink-0 text-rose-500" size={18} />
           )}
-          <span className="leading-relaxed">{message}</span>
+          <span className="flex-1 leading-relaxed">{message}</span>
+          {onDismiss && (
+            <button
+              onClick={onDismiss}
+              aria-label="Dismiss"
+              className="ml-1 shrink-0 rounded-md p-1 text-muted-foreground transition-colors hover:bg-[var(--surface)] hover:text-foreground"
+            >
+              <X size={14} />
+            </button>
+          )}
         </motion.div>
       ) : null}
     </AnimatePresence>

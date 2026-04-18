@@ -12,6 +12,10 @@ const HERO_SOCIALS = [
 
 export const Hero = () => {
   const { t } = useTranslation();
+  const [role1, role2] = (t("title") as string).split(" & ");
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden px-6 py-24">
@@ -46,7 +50,7 @@ export const Hero = () => {
               className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-md"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.8)] animate-pulse" />
-              Kigali, Rwanda · Open to opportunities
+              {t("ui.heroStatus") as string}
             </motion.div>
 
             {/* Name — stacked, two lines */}
@@ -72,12 +76,16 @@ export const Hero = () => {
               className="mb-7 flex flex-wrap items-center justify-center gap-2 md:justify-start"
             >
               <span className="rounded-full border border-primary/25 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
-                Full-Stack Engineer
+                {role1}
               </span>
-              <span className="select-none text-muted-foreground/40">·</span>
-              <span className="rounded-full border border-violet-500/25 bg-violet-500/10 px-4 py-1.5 text-sm font-semibold text-violet-600 dark:text-violet-400">
-                Prompt Engineer
-              </span>
+              {role2 && (
+                <>
+                  <span className="select-none text-muted-foreground/40">·</span>
+                  <span className="rounded-full border border-violet-500/25 bg-violet-500/10 px-4 py-1.5 text-sm font-semibold text-violet-600 dark:text-violet-400">
+                    {role2}
+                  </span>
+                </>
+              )}
             </motion.div>
 
             {/* Tagline */}
@@ -87,7 +95,7 @@ export const Hero = () => {
               transition={{ delay: 0.48, duration: 0.65 }}
               className="mb-9 max-w-[26rem] text-base leading-relaxed text-muted-foreground md:text-[1.05rem]"
             >
-              {t("ui.heroTagline")}
+              {t("ui.heroTagline") as string}
             </motion.p>
 
             {/* Social icon buttons */}
@@ -128,13 +136,13 @@ export const Hero = () => {
                 href="#contact"
                 className="rounded-full bg-foreground px-7 py-3 text-sm font-semibold text-background transition-all duration-200 hover:opacity-90 hover:scale-[1.03]"
               >
-                {t("ui.getInTouch")}
+                {t("ui.getInTouch") as string}
               </a>
               <a
                 href="#projects"
                 className="rounded-full border border-[var(--border)] bg-[var(--card)] px-7 py-3 text-sm font-semibold backdrop-blur-md transition-all duration-200 hover:border-primary/40 hover:bg-[var(--surface-strong)] hover:scale-[1.03]"
               >
-                {t("ui.viewWork")}
+                {t("ui.viewWork") as string}
               </a>
             </motion.div>
           </motion.div>
@@ -150,12 +158,12 @@ export const Hero = () => {
               {/* Outer spinning dashed ring */}
               <div
                 className="absolute inset-0 rounded-full border-2 border-dashed border-primary/35"
-                style={{ animation: "spin 18s linear infinite" }}
+                style={prefersReducedMotion ? undefined : { animation: "spin 18s linear infinite" }}
               />
               {/* Counter-rotating inner decorative ring */}
               <div
                 className="absolute inset-[10px] rounded-full border border-dotted border-violet-400/20"
-                style={{ animation: "spin 11s linear infinite reverse" }}
+                style={prefersReducedMotion ? undefined : { animation: "spin 11s linear infinite reverse" }}
               />
               {/* Soft glow behind photo */}
               <div className="absolute inset-[22px] rounded-full bg-primary/8 blur-xl" />
@@ -180,7 +188,7 @@ export const Hero = () => {
         transition={{ delay: 1.1, duration: 1 }}
         className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground"
       >
-        <span className="text-xs uppercase tracking-widest">{t("ui.scrollDown")}</span>
+        <span className="text-xs uppercase tracking-widest">{t("ui.scrollDown") as string}</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}

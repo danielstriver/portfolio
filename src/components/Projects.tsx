@@ -1,18 +1,18 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Users, User, ArrowUpRight } from "lucide-react";
+import { useTranslation } from "../hooks/useTranslation";
+import type { ProjectItem } from "../types/language.types";
 
 const GithubIcon = ({ size = 15 }: { size?: number }) => (
   <svg width={size} height={size} aria-hidden="true" className="shrink-0">
     <use href="/icons.svg#github-icon" />
   </svg>
 );
-import { useTranslation } from "../hooks/useTranslation";
-import type { ProjectItem } from "../types/language.types";
 
 export const Projects = () => {
   const { t } = useTranslation();
   const projects = t("projects") as ProjectItem[];
-  const [featured, comingSoon] = [
+  const [featured, comingSoon]: [ProjectItem[], ProjectItem[]] = [
     projects.filter((p) => !p.status),
     projects.filter((p) => !!p.status),
   ];
@@ -34,22 +34,22 @@ export const Projects = () => {
           className="mb-16 text-center"
         >
           <p className="mb-3 font-mono text-sm font-medium text-primary tracking-widest">
-            // featured work
+            {t("ui.projectsLabel") as string}
           </p>
           <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
-            {t("sections.projects")}
+            {t("sections.projects") as string}
           </h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-primary to-violet-500 mb-5" />
-          <p className="mx-auto max-w-xl text-base text-muted-foreground">{t("sections.projectsTagline")}</p>
+          <p className="mx-auto max-w-xl text-base text-muted-foreground">{t("sections.projectsTagline") as string}</p>
         </motion.div>
 
         {/* All 3 cards in the same grid — consistent size */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {featured.map((project, index) => (
-            <FeaturedCard key={index} project={project} index={index} />
+            <FeaturedCard key={project.title} project={project} index={index} />
           ))}
           {comingSoon.map((project, index) => (
-            <ComingSoonCard key={index} project={project} index={featured.length + index} />
+            <ComingSoonCard key={project.title} project={project} index={featured.length + index} />
           ))}
         </div>
       </div>
@@ -74,7 +74,7 @@ const FeaturedCard = ({ project, index }: { project: ProjectItem; index: number 
       <div className="relative aspect-[16/9] overflow-hidden">
         <img
           src={project.image}
-          alt={project.title}
+          alt={`Screenshot of ${project.title}`}
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
@@ -93,7 +93,7 @@ const FeaturedCard = ({ project, index }: { project: ProjectItem; index: number 
               onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink size={15} />
-              {t("ui.viewLive")}
+              {t("ui.viewLive") as string}
             </a>
           )}
           {project.github && (
@@ -105,7 +105,7 @@ const FeaturedCard = ({ project, index }: { project: ProjectItem; index: number 
               onClick={(e) => e.stopPropagation()}
             >
               <GithubIcon size={15} />
-              {t("ui.viewCode")}
+              {t("ui.viewCode") as string}
             </a>
           )}
         </div>
@@ -120,7 +120,7 @@ const FeaturedCard = ({ project, index }: { project: ProjectItem; index: number 
             }`}
           >
             {isTeam ? <Users size={11} /> : <User size={11} />}
-            {isTeam ? t("ui.teamProject") : t("ui.soloProject")}
+            {isTeam ? t("ui.teamProject") as string : t("ui.soloProject") as string}
           </span>
         </div>
       </div>
@@ -148,7 +148,7 @@ const FeaturedCard = ({ project, index }: { project: ProjectItem; index: number 
         {/* Who it's for */}
         {project.target && (
           <p className="mb-4 text-xs text-muted-foreground">
-            <span className="font-semibold text-foreground">{t("ui.builtFor")}</span>{" "}
+            <span className="font-semibold text-foreground">{t("ui.builtFor") as string}</span>{" "}
             {project.target}
           </p>
         )}
@@ -176,7 +176,7 @@ const FeaturedCard = ({ project, index }: { project: ProjectItem; index: number 
               rel="noopener noreferrer"
               className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all hover:gap-2.5"
             >
-              {t("ui.viewLive")}
+              {t("ui.viewLive") as string}
               <ArrowUpRight size={15} className="transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
             </a>
           )}
@@ -191,7 +191,7 @@ const FeaturedCard = ({ project, index }: { project: ProjectItem; index: number 
               className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               <GithubIcon size={14} />
-              {t("ui.viewCode")}
+              {t("ui.viewCode") as string}
             </a>
           )}
         </div>

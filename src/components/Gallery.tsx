@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { X, ChevronLeft, ChevronRight, Expand } from "lucide-react";
 import { useTranslation } from "../hooks/useTranslation";
 import type { GalleryItem } from "../types/language.types";
@@ -23,9 +23,17 @@ export const Gallery = () => {
   ];
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const lastFocusedRef = useRef<HTMLElement | null>(null);
 
-  const openLightbox = (index: number) => setLightboxIndex(index);
-  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const openLightbox = (index: number) => {
+    lastFocusedRef.current = document.activeElement as HTMLElement;
+    setLightboxIndex(index);
+  };
+  const closeLightbox = useCallback(() => {
+    setLightboxIndex(null);
+    lastFocusedRef.current?.focus();
+  }, []);
 
   const gotoPrev = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
     e?.stopPropagation();
@@ -53,8 +61,13 @@ export const Gallery = () => {
   }, [lightboxIndex, gotoPrev, gotoNext, closeLightbox]);
 
   useEffect(() => {
-    document.body.style.overflow = lightboxIndex !== null ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (lightboxIndex !== null) {
+      document.body.classList.add("overflow-hidden");
+      closeButtonRef.current?.focus();
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => { document.body.classList.remove("overflow-hidden"); };
   }, [lightboxIndex]);
 
   const hobbyTags = (t("ui.beyondCodeTags") as string).split("|");
@@ -77,10 +90,10 @@ export const Gallery = () => {
           className="mb-16 text-center"
         >
           <p className="mb-3 font-mono text-sm font-medium text-primary tracking-widest">
-            // moments
+            {t("ui.galleryLabel") as string}
           </p>
           <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
-            {t("sections.gallery")}
+            {t("sections.gallery") as string}
           </h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-primary to-violet-500" />
         </motion.div>
@@ -155,14 +168,14 @@ export const Gallery = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="mb-3 font-mono text-sm font-medium text-primary tracking-widest">
-              {t("ui.beyondCodeLabel")}
+              {t("ui.beyondCodeLabel") as string}
             </p>
             <h3 className="mb-5 text-3xl font-bold tracking-tight md:text-4xl">
               {/* Split on "not" / "ntubaka" / "ne construis pas" for gradient highlight */}
               <BeyondCodeHeadline text={t("ui.beyondCodeHeadline") as string} />
             </h3>
             <p className="mb-8 text-base leading-relaxed text-muted-foreground">
-              {t("ui.beyondCodeCopy")}
+              {t("ui.beyondCodeCopy") as string}
             </p>
             <div className="flex flex-wrap gap-2.5">
               {hobbyTags.map((tag) => (
@@ -222,6 +235,7 @@ export const Gallery = () => {
             onClick={closeLightbox}
           >
             <button
+              ref={closeButtonRef}
               className="absolute right-5 top-5 z-[110] rounded-full bg-white/10 p-3 text-white backdrop-blur-xl hover:bg-white/20 transition-colors"
               onClick={closeLightbox}
               aria-label="Close"
@@ -278,11 +292,11 @@ export const Gallery = () => {
   );
 };
 
-/* Highlights a keyword in the headline with a gradient span */
+/* Highlights a negation keyword in the headline with a gradient span */
 function BeyondCodeHeadline({ text }: { text: string }) {
-  // Keywords to highlight in each language
-  const highlights = ["not", "ntubaka", "ne construis pas"];
-  for (const kw of highlights) {
+  // One keyword per language — order matters (longer matches first)
+  const keywords = ["ne construis pas", "no estoy", "ntubaka", "nicht", "não", "not"];
+  for (const kw of keywords) {
     const idx = text.toLowerCase().indexOf(kw);
     if (idx !== -1) {
       const before = text.slice(0, idx);

@@ -20,13 +20,13 @@ export const Navbar = () => {
   const themeLabel = isDarkMode ? "Switch to light mode" : "Switch to dark mode";
 
   const NAV_LINKS = [
-    { name: t("nav.about"), href: "#about" },
-    { name: t("nav.experience"), href: "#experience" },
-    { name: t("nav.projects"), href: "#projects" },
-    { name: t("nav.skills"), href: "#skills" },
-    { name: t("nav.education"), href: "#education" },
-    { name: t("nav.gallery"), href: "#gallery" },
-    { name: t("nav.contact"), href: "#contact" },
+    { name: t("nav.about") as string, href: "#about" },
+    { name: t("nav.experience") as string, href: "#experience" },
+    { name: t("nav.projects") as string, href: "#projects" },
+    { name: t("nav.skills") as string, href: "#skills" },
+    { name: t("nav.education") as string, href: "#education" },
+    { name: t("nav.gallery") as string, href: "#gallery" },
+    { name: t("nav.contact") as string, href: "#contact" },
   ];
 
   return (
@@ -90,7 +90,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground hover:opacity-90"
           >
-            {t("nav.hireMe")}
+            {t("nav.hireMe") as string}
           </motion.a>
         </div>
 
@@ -146,7 +146,7 @@ export const Navbar = () => {
                   className="inline-flex w-fit rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground hover:opacity-90 transition-opacity"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {t("nav.hireMe")}
+                  {t("nav.hireMe") as string}
                 </a>
               </div>
             </div>

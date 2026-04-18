@@ -54,7 +54,7 @@ export const Contact = () => {
             transition={{ duration: 0.8 }}
             className="mb-16 text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">{t("sections.contact")}</h2>
+            <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">{t("sections.contact") as string}</h2>
             <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
           </motion.div>
 
@@ -65,9 +65,9 @@ export const Contact = () => {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <h3 className="mb-6 text-2xl font-bold">{t("contact.subtitle")}</h3>
+              <h3 className="mb-6 text-2xl font-bold">{t("contact.subtitle") as string}</h3>
               <p className="max-w-md leading-relaxed text-muted-foreground">
-                {t("contact.description")}
+                {t("contact.description") as string}
               </p>
 
               <div className="space-y-6">
@@ -76,7 +76,7 @@ export const Contact = () => {
                     <Mail className="text-primary" size={20} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">{t("contact.email")}</p>
+                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">{t("contact.email") as string}</p>
                     <a href={`mailto:${COMMON_INFO.email}`} className="text-lg hover:text-primary">
                       {COMMON_INFO.email}
                     </a>
@@ -88,7 +88,7 @@ export const Contact = () => {
                     <Phone className="text-primary" size={20} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">{t("contact.phone")}</p>
+                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">{t("contact.phone") as string}</p>
                     <a href={`tel:${COMMON_INFO.phone}`} className="text-lg hover:text-primary">
                       {COMMON_INFO.phone}
                     </a>
@@ -100,7 +100,7 @@ export const Contact = () => {
                     <MapPin className="text-primary" size={20} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">{t("contact.address")}</p>
+                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">{t("contact.address") as string}</p>
                     <p className="text-lg text-muted-foreground">{COMMON_INFO.address}</p>
                   </div>
                 </div>
@@ -129,16 +129,18 @@ export const Contact = () => {
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-muted-foreground">
-                      {t("contact.name")}
+                      {t("contact.name") as string}
                     </label>
                     <input
                       id="name"
                       name="name"
                       type="text"
+                      required
+                      aria-required="true"
                       value={values.name}
                       onChange={(event) => updateField("name", event.target.value)}
                       className={inputClassName}
-                      placeholder={t("contact.namePlaceholder")}
+                      placeholder={t("contact.namePlaceholder") as string}
                       aria-invalid={Boolean(fieldErrors.name?.length)}
                       aria-describedby={fieldErrors.name?.length ? "name-error" : undefined}
                     />
@@ -151,16 +153,18 @@ export const Contact = () => {
 
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium text-muted-foreground">
-                      {t("contact.email")}
+                      {t("contact.email") as string}
                     </label>
                     <input
                       id="email"
                       name="email"
                       type="email"
+                      required
+                      aria-required="true"
                       value={values.email}
                       onChange={(event) => updateField("email", event.target.value)}
                       className={inputClassName}
-                      placeholder={t("contact.emailPlaceholder")}
+                      placeholder={t("contact.emailPlaceholder") as string}
                       aria-invalid={Boolean(fieldErrors.email?.length)}
                       aria-describedby={fieldErrors.email?.length ? "email-error" : undefined}
                     />
@@ -174,16 +178,18 @@ export const Contact = () => {
 
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium text-muted-foreground">
-                    {t("contact.message")}
+                    {t("contact.message") as string}
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={5}
+                    required
+                    aria-required="true"
                     value={values.message}
                     onChange={(event) => updateField("message", event.target.value)}
                     className={`${inputClassName} resize-none`}
-                    placeholder={t("contact.messagePlaceholder")}
+                    placeholder={t("contact.messagePlaceholder") as string}
                     aria-invalid={Boolean(fieldErrors.message?.length)}
                     aria-describedby={fieldErrors.message?.length ? "message-error" : undefined}
                   />
@@ -202,11 +208,11 @@ export const Contact = () => {
                   {isSubmitting ? (
                     <>
                       <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground/40 border-t-primary-foreground" />
-                      {t("contact.sending")}
+                      {t("contact.sending") as string}
                     </>
                   ) : (
                     <>
-                      {t("contact.send")}
+                      {t("contact.send") as string}
                       <Send size={18} />
                     </>
                   )}
@@ -221,6 +227,7 @@ export const Contact = () => {
         visible={Boolean(feedbackMessage && (isSuccess || isError))}
         tone={isSuccess ? "success" : "error"}
         message={feedbackMessage}
+        onDismiss={clearFeedback}
       />
     </>
   );

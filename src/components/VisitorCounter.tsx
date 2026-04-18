@@ -12,8 +12,16 @@ export const VisitorCounter = () => {
     const key = "visits";
 
     const fetchCount = async () => {
+      const alreadyCounted = sessionStorage.getItem("visit_counted");
+      const cachedCount = sessionStorage.getItem("visit_count_value");
+
+      if (alreadyCounted && cachedCount !== null) {
+        setCount(parseInt(cachedCount, 10));
+        return;
+      }
+
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
 
       try {
         const response = await fetch(
@@ -23,17 +31,16 @@ export const VisitorCounter = () => {
         clearTimeout(timeoutId);
 
         if (!response.ok) throw new Error("API failed");
-        
+
         const data = await response.json();
-        // CounterAPI.dev returns { count: number, ... }
         if (data && typeof data.count === "number") {
+          sessionStorage.setItem("visit_counted", "1");
+          sessionStorage.setItem("visit_count_value", String(data.count));
           setCount(data.count);
         }
       } catch (error) {
         console.error("Failed to fetch visitor count:", error);
-        // On failure, we stay in null or set a small believable random start if it's the first time
-        // But for engineering accuracy, we'll just not show it if it fails repeatedly
-        setCount(null); 
+        setCount(null);
       }
     };
 
@@ -48,7 +55,7 @@ export const VisitorCounter = () => {
         <Eye size={14} />
       </div>
       <div className="flex flex-col items-start leading-none gap-1">
-        <span className="text-[10px] uppercase tracking-widest text-primary/70 font-bold">{t("footer.visits")}</span>
+        <span className="text-[10px] uppercase tracking-widest text-primary/70 font-bold">{t("footer.visits") as string}</span>
         <span className="text-foreground font-bold tabular-nums">
           {count.toLocaleString()}
         </span>

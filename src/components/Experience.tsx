@@ -17,19 +17,22 @@ export const Experience = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <p className="mb-3 font-mono text-sm font-medium text-primary tracking-widest">// experience</p>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">{t("sections.experience")}</h2>
+          <p className="mb-3 font-mono text-sm font-medium text-primary tracking-widest">
+            {t("ui.experienceLabel") as string}
+          </p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">{t("sections.experience") as string}</h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-primary to-violet-500 mb-5" />
-          <p className="mx-auto max-w-xl text-base text-muted-foreground">{t("sections.experienceTagline")}</p>
+          <p className="mx-auto max-w-xl text-base text-muted-foreground">{t("sections.experienceTagline") as string}</p>
         </motion.div>
 
         <div className="relative">
-          <div className="absolute bottom-0 left-0 top-0 w-[2px] md:left-1/2 md:-translate-x-1/2" style={{ background: "var(--border)" }} />
+          {/* Timeline line — left-4 on mobile, centered on md+ */}
+          <div className="absolute bottom-0 left-4 top-0 w-[2px] md:left-1/2 md:-translate-x-1/2" style={{ background: "var(--border)" }} />
 
           <div className="space-y-12">
             {experience.map((exp, index) => (
               <motion.div
-                key={index}
+                key={`${exp.company}-${exp.period}`}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -38,15 +41,16 @@ export const Experience = () => {
                   index % 2 === 0 ? "md:flex-row-reverse" : ""
                 }`}
               >
-                <div className="w-full md:w-1/2 pl-8 md:pl-0">
+                {/* Card — pl-10 on mobile so content clears the dot at left-4 */}
+                <div className="w-full md:w-1/2 pl-10 md:pl-0">
                   <div className="group rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 backdrop-blur-sm transition-all hover:border-primary/25 hover:bg-[var(--card-strong)]">
                     <div className="flex items-center gap-2 mb-2">
                       <Briefcase size={16} className="text-primary" />
                       <span className="text-sm font-medium uppercase tracking-widest text-primary">{exp.company}</span>
                     </div>
-                    
+
                     <h3 className="mb-4 text-xl font-bold group-hover:text-primary">{exp.title}</h3>
-                    
+
                     <div className="mb-4 flex flex-col gap-1 text-sm text-muted-foreground items-start">
                       <div className="flex items-center gap-2">
                         <Calendar size={14} />
@@ -59,8 +63,8 @@ export const Experience = () => {
                     </div>
 
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      {exp.description.map((item: string, i: number) => (
-                        <li key={i} className="flex items-start gap-2.5 leading-relaxed">
+                      {exp.description.map((item: string) => (
+                        <li key={item} className="flex items-start gap-2.5 leading-relaxed">
                           <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
                           {item}
                         </li>
@@ -68,7 +72,9 @@ export const Experience = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="absolute left-0 md:left-1/2 top-0 md:top-8 -translate-x-1/2 w-8 h-8 flex items-center justify-center z-10">
+
+                {/* Timeline dot — left-4 on mobile (aligned with line), centered on md+ */}
+                <div className="absolute left-4 md:left-1/2 top-0 md:top-8 -translate-x-1/2 w-8 h-8 flex items-center justify-center z-10">
                   <div className="h-4 w-4 rounded-full border-4 border-primary shadow-[0_0_15px_rgba(99,102,241,0.35)]" style={{ background: "var(--background)" }} />
                 </div>
 

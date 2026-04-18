@@ -39,7 +39,7 @@ export const Education = () => {
             // education
           </p>
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
-            {t("sections.education")}
+            {t("sections.education") as string}
           </h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-primary to-violet-500" />
         </motion.div>
@@ -51,14 +51,14 @@ export const Education = () => {
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <GraduationCap size={18} />
               </span>
-              {t("sections.academic")}
+              {t("sections.academic") as string}
             </h3>
 
             <div className="space-y-4">
               {education.map((edu, index) =>
                 edu.type === "continuous" ? (
                   <motion.div
-                    key={index}
+                    key={edu.institution}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -99,7 +99,7 @@ export const Education = () => {
                   </motion.div>
                 ) : (
                   <motion.div
-                    key={index}
+                    key={edu.institution}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -138,7 +138,7 @@ export const Education = () => {
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <Shield size={18} />
               </span>
-              {t("sections.certifications")}
+              {t("sections.certifications") as string}
             </h3>
 
             <div className="space-y-3">
@@ -146,7 +146,7 @@ export const Education = () => {
                 const style = certStyle(cert.issuer);
                 return (
                   <motion.div
-                    key={index}
+                    key={cert.name}
                     initial={{ opacity: 0, x: 32 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}

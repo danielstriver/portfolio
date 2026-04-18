@@ -25,11 +25,33 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   "Bases de Données & Backend": <Database size={16} />,
   "Robotique & Matériel": <Cpu size={16} />,
   "Langues Parlées": <Globe size={16} />,
+  // ES
+  "IA & Ingeniería de Prompts": <Sparkles size={16} />,
+  "Lenguajes": <Code2 size={16} />,
+  "Frameworks & Bibliotecas": <Layers size={16} />,
+  "Bases de Datos & Backend": <Database size={16} />,
+  "Robótica & Hardware": <Cpu size={16} />,
+  "Idiomas Hablados": <Globe size={16} />,
+  // DE
+  "KI & Prompt-Engineering": <Sparkles size={16} />,
+  "Programmiersprachen": <Code2 size={16} />,
+  "Frameworks & Bibliotheken": <Layers size={16} />,
+  "Datenbanken & Backend": <Database size={16} />,
+  "Robotik & Hardware": <Cpu size={16} />,
+  "Gesprochene Sprachen": <Globe size={16} />,
+  // PT (unique keys — "Frameworks & Bibliotecas" and "Robótica & Hardware" shared with ES)
+  "IA & Engenharia de Prompts": <Sparkles size={16} />,
+  "Linguagens": <Code2 size={16} />,
+  "Bancos de Dados & Backend": <Database size={16} />,
+  "Idiomas Falados": <Globe size={16} />,
 };
 
 const AI_CATEGORIES = new Set([
   "AI & Prompt Engineering",
   "IA & Prompt Engineering",
+  "IA & Ingeniería de Prompts",
+  "KI & Prompt-Engineering",
+  "IA & Engenharia de Prompts",
 ]);
 
 const AI_HIGHLIGHT_TOOLS = ["Claude CLI", "Gemini CLI", "Codex CLI"];
@@ -53,14 +75,14 @@ export const Skills = () => {
           className="text-center mb-16"
         >
           <p className="mb-3 font-mono text-sm font-medium text-primary tracking-widest">
-            // skills
+            {t("ui.skillsLabel") as string}
           </p>
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
-            {t("sections.skills")}
+            {t("sections.skills") as string}
           </h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-primary to-violet-500 mb-5" />
           <p className="mx-auto max-w-xl text-base text-muted-foreground">
-            {t("sections.skillsTagline")}
+            {t("sections.skillsTagline") as string}
           </p>
         </motion.div>
 
@@ -118,7 +140,7 @@ export const Skills = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {restGroups.map((skillGroup, index) => (
             <motion.div
-              key={index}
+              key={skillGroup.category}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -134,9 +156,9 @@ export const Skills = () => {
                 </h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                {skillGroup.items.map((skill: string, i: number) => (
+                {skillGroup.items.map((skill: string) => (
                   <span
-                    key={i}
+                    key={skill}
                     className="rounded-md border border-[var(--border)] bg-[var(--surface)] px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors group-hover:border-primary/20"
                   >
                     {skill}

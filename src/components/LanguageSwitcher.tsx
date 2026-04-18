@@ -6,12 +6,12 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const LANG_FLAG_SRC: Record<Language, string> = {
-  en: "https://flagcdn.com/w40/gb.png",
-  rw: "https://flagcdn.com/w40/rw.png",
-  fr: "https://flagcdn.com/w40/fr.png",
-  es: "https://flagcdn.com/w40/es.png",
-  de: "https://flagcdn.com/w40/de.png",
-  pt: "https://flagcdn.com/w40/pt.png",
+  en: "/flags/gb.png",
+  rw: "/flags/rw.png",
+  fr: "/flags/fr.png",
+  es: "/flags/es.png",
+  de: "/flags/de.png",
+  pt: "/flags/pt.png",
 };
 
 const LANG_LABELS: Record<Language, string> = {
@@ -23,13 +23,13 @@ const LANG_LABELS: Record<Language, string> = {
   pt: "Português",
 };
 
-function Flag({ lang, className = "w-5 h-3.5" }: { lang: Language; className?: string }) {
+function Flag({ lang, className = "w-5 h-3.5", eager = false }: { lang: Language; className?: string; eager?: boolean }) {
   return (
     <img
       src={LANG_FLAG_SRC[lang]}
       alt={`${LANG_LABELS[lang]} flag`}
       className={`${className} rounded-[2px] object-cover shrink-0 shadow-sm`}
-      loading="eager"
+      loading={eager ? "eager" : "lazy"}
     />
   );
 }
@@ -47,7 +47,7 @@ export const LanguageSwitcher = () => {
         aria-label="Change language"
         aria-expanded={isOpen}
       >
-        <Flag lang={language} />
+        <Flag lang={language} eager />
         <span className="hidden lg:inline text-sm">{LANG_LABELS[language]}</span>
         <span className="lg:hidden text-xs font-bold uppercase">{language}</span>
         <ChevronDown

@@ -22,15 +22,15 @@ Single-page portfolio app: React 19 + TypeScript + Vite + Tailwind CSS v4 + Fram
 **All portfolio content and translations live in `src/constants/index.ts`.**
 
 - `COMMON_INFO` — personal info (name, email, phone, socials)
-- `DATA` — a `Record<Language, TranslationData>` with full translations for English (`en`), Kinyarwanda (`rw`), and French (`fr`). Every string the UI renders (section headings, nav labels, contact copy, experience entries, projects, gallery, skills, education) is duplicated here for each language.
+- `DATA` — a `Record<Language, TranslationData>` with full translations for all six languages: English (`en`), Kinyarwanda (`rw`), French (`fr`), Spanish (`es`), German (`de`), and Portuguese (`pt`). Every string the UI renders (section headings, nav labels, contact copy, experience entries, projects, gallery, skills, education) is duplicated here for each language.
 
-When adding new content or UI copy, add it to all three language entries in `DATA` and update the `TranslationData` interface in `src/types/language.types.ts` if new keys are needed.
+When adding new content or UI copy, add it to **all six** language entries in `DATA` and update the `TranslationData` interface in `src/types/language.types.ts` if new keys are needed.
 
 ### Translation system
 
 - `LanguageProvider` (`src/providers/LanguageProvider.tsx`) reads/writes language preference to `localStorage` and sets `document.documentElement.lang`.
 - `useTranslation` hook (`src/hooks/useTranslation.ts`) exposes `t(key)` using dot-notation path traversal into `DATA[language]`.
-- `LanguageSwitcher` component lets users switch between `en`, `rw`, and `fr`.
+- `LanguageSwitcher` component lets users switch between all six languages.
 
 ### Theme system
 

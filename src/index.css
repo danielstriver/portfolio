@@ -68,7 +68,7 @@ html.dark {
     pointer-events: none;
     z-index: 100;
     opacity: var(--noise-opacity);
-    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    background-image: url("/noise.svg");
     filter: brightness(100%) contrast(100%);
   }
 
