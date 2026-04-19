@@ -25,6 +25,7 @@ export const Gallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const lastFocusedRef = useRef<HTMLElement | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const openLightbox = (index: number) => {
     lastFocusedRef.current = document.activeElement as HTMLElement;
@@ -48,6 +49,17 @@ export const Gallery = () => {
       i !== null ? (i + 1) % allPhotos.length : null
     );
   }, [allPhotos.length]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 50) delta < 0 ? gotoNext() : gotoPrev();
+    touchStartX.current = null;
+  };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -98,8 +110,8 @@ export const Gallery = () => {
           <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-primary to-violet-500" />
         </motion.div>
 
-        {/* ── Work highlights — editorial 3-photo grid ── */}
-        <div className="mb-28 grid grid-cols-1 gap-4 md:grid-cols-2" style={{ gridTemplateRows: "auto auto" }}>
+        {/* ── Work highlights — horizontal scroll on mobile, editorial grid on md+ ── */}
+        <div className="mb-28 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" style={{ gridTemplateRows: "auto auto" }}>
           {/* Left: tall card spanning both rows */}
           {galleryItems[0] && (
             <motion.div
@@ -107,7 +119,7 @@ export const Gallery = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="group relative cursor-pointer overflow-hidden rounded-3xl md:row-span-2"
+              className="group relative shrink-0 w-72 snap-start cursor-pointer overflow-hidden rounded-3xl md:w-auto md:row-span-2"
               onClick={() => openLightbox(0)}
             >
               <img
@@ -128,7 +140,7 @@ export const Gallery = () => {
           )}
 
           {/* Right: two stacked cards */}
-          <div className="flex flex-col gap-4">
+          <div className="contents md:flex md:flex-col md:gap-4">
             {galleryItems.slice(1).map((item, i) => (
               <motion.div
                 key={i}
@@ -136,7 +148,7 @@ export const Gallery = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: (i + 1) * 0.1 }}
-                className="group relative cursor-pointer overflow-hidden rounded-3xl"
+                className="group relative shrink-0 w-72 snap-start cursor-pointer overflow-hidden rounded-3xl md:w-auto"
                 style={{ height: "260px" }}
                 onClick={() => openLightbox(i + 1)}
               >
@@ -205,7 +217,7 @@ export const Gallery = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="group relative cursor-pointer overflow-hidden rounded-2xl"
-                style={{ height: "180px" }}
+                style={{ height: "clamp(150px, 22vw, 180px)" }}
                 onClick={() => openLightbox(galleryItems.length + i)}
               >
                 <img
@@ -233,6 +245,8 @@ export const Gallery = () => {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm"
             onClick={closeLightbox}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
           >
             <button
               ref={closeButtonRef}
@@ -243,7 +257,7 @@ export const Gallery = () => {
               <X size={22} />
             </button>
 
-            <div className="absolute inset-x-4 top-1/2 z-[110] flex -translate-y-1/2 justify-between pointer-events-none">
+            <div className="absolute inset-x-4 top-1/2 z-[110] hidden md:flex -translate-y-1/2 justify-between pointer-events-none">
               <button
                 className="pointer-events-auto rounded-full bg-white/10 p-4 text-white backdrop-blur-xl hover:bg-white/20 transition-all hover:scale-105 active:scale-95"
                 onClick={gotoPrev}
@@ -295,7 +309,7 @@ export const Gallery = () => {
 /* Highlights a negation keyword in the headline with a gradient span */
 function BeyondCodeHeadline({ text }: { text: string }) {
   // One keyword per language — order matters (longer matches first)
-  const keywords = ["ne construis pas", "no estoy", "ntubaka", "nicht", "não", "not"];
+  const keywords = ["ne construis pas", "no estoy", "ntubaka", "nicht", "não", "لا أبني", "不在编码", "नहीं बना", "sijengi", "not"];
   for (const kw of keywords) {
     const idx = text.toLowerCase().indexOf(kw);
     if (idx !== -1) {

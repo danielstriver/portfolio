@@ -20,10 +20,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setLanguageState(newLang);
     localStorage.setItem("language", newLang);
     document.documentElement.lang = newLang;
+    document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
   }, []);
 
   useEffect(() => {
     document.documentElement.lang = language;
+    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
   }, [language]);
 
   const t = useCallback((key: string) => {

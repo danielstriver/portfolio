@@ -12,6 +12,10 @@ const LANG_FLAG_SRC: Record<Language, string> = {
   es: "/flags/es.png",
   de: "/flags/de.png",
   pt: "/flags/pt.png",
+  sw: "/flags/ke.png",
+  ar: "/flags/sa.png",
+  zh: "/flags/cn.png",
+  hi: "/flags/in.png",
 };
 
 const LANG_LABELS: Record<Language, string> = {
@@ -21,6 +25,10 @@ const LANG_LABELS: Record<Language, string> = {
   es: "Español",
   de: "Deutsch",
   pt: "Português",
+  sw: "Kiswahili",
+  ar: "العربية",
+  zh: "中文",
+  hi: "हिन्दी",
 };
 
 function Flag({ lang, className = "w-5 h-3.5", eager = false }: { lang: Language; className?: string; eager?: boolean }) {
@@ -68,9 +76,9 @@ export const LanguageSwitcher = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 8, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="absolute right-0 top-full mt-2 z-20 w-56 max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card-strong)] shadow-[var(--shadow)] backdrop-blur-xl"
+              className="absolute right-0 top-full mt-2 z-20 w-44 max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card-strong)] shadow-[var(--shadow)] backdrop-blur-xl"
             >
-              <div className="grid grid-cols-2 gap-1 p-2">
+              <div className="flex flex-col gap-0.5 p-2">
                 {languages.map((lang) => (
                   <button
                     key={lang}
