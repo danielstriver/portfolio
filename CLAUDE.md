@@ -59,6 +59,8 @@ When adding new content or UI copy, add it to **all six** language entries in `D
 
 `App.tsx` composes all sections in order: `Navbar → Hero → About → Experience → Projects → Skills → Education → Gallery → Contact`. The footer is rendered inline in `App.tsx` (no separate `Footer` component). Each section is a standalone component in `src/components/` identified by its `id` attribute for anchor navigation.
 
+Provider nesting order in `main.tsx`: `ThemeProvider → LanguageProvider → App`.
+
 ### Language auto-detection
 
 `LanguageProvider` initialises language from `localStorage` key `"language"`, falling back to `navigator.language` prefix, then `"en"`. The `t(key)` function returns the key string unchanged when a path is missing — useful for catching missing translations at runtime.

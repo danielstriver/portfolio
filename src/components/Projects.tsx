@@ -82,8 +82,8 @@ const FeaturedCard = ({ project, index }: { project: ProjectItem; index: number 
         {/* Gradient overlay — always present, stronger on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-90" />
 
-        {/* Hover CTAs centred on image */}
-        <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+        {/* CTAs centred on image — always visible on mobile, hover-reveal on desktop */}
+        <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-100 md:opacity-0 md:translate-y-3 transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0">
           {project.link && (
             <a
               href={project.link}

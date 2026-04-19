@@ -17,7 +17,7 @@ function RichParagraph({ text, highlights }: { text: string; highlights: string[
     <p className="text-base leading-relaxed text-muted-foreground md:text-[1.05rem]">
       {parts.map((part, i) =>
         highlightSet.has(part) ? (
-          <strong key={i} className="font-semibold text-foreground">
+          <strong key={i} className="font-semibold text-primary">
             {part}
           </strong>
         ) : (

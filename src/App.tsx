@@ -82,7 +82,7 @@ function App() {
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-8 md:flex-row">
           <div className="flex flex-col gap-4 items-center md:items-start">
             <div className="text-center text-sm text-muted-foreground md:text-left">
-              Copyright {new Date().getFullYear()} {COMMON_INFO.name}. {t("footer.rights") as string}
+              © {new Date().getFullYear()} {COMMON_INFO.name}. {t("footer.rights") as string}
             </div>
             <VisitorCounter />
           </div>
