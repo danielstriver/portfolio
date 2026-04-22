@@ -7,10 +7,6 @@ export const VisitorCounter = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    // We switch to counterapi.dev which is currently more reliable than countapi.xyz
-    const namespace = "daniel-niyomugenga-portfolio";
-    const key = "visits";
-
     const fetchCount = async () => {
       const alreadyCounted = sessionStorage.getItem("visit_counted");
       const cachedCount = sessionStorage.getItem("visit_count_value");
@@ -21,13 +17,13 @@ export const VisitorCounter = () => {
       }
 
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
 
       try {
-        const response = await fetch(
-          `https://api.counterapi.dev/v1/${namespace}/${key}/up`,
-          { signal: controller.signal }
-        );
+        const response = await fetch("/api/counter", {
+          method: "POST",
+          signal: controller.signal,
+        });
         clearTimeout(timeoutId);
 
         if (!response.ok) throw new Error("API failed");
@@ -38,8 +34,7 @@ export const VisitorCounter = () => {
           sessionStorage.setItem("visit_count_value", String(data.count));
           setCount(data.count);
         }
-      } catch (error) {
-        console.error("Failed to fetch visitor count:", error);
+      } catch {
         setCount(null);
       }
     };
@@ -50,15 +45,19 @@ export const VisitorCounter = () => {
   if (count === null) return null;
 
   return (
-    <div className="flex items-center gap-3 rounded-2xl border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-medium text-muted-foreground backdrop-blur-sm shadow-sm hover:border-primary/40 transition-all group">
-      <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform">
-        <Eye size={14} />
-      </div>
-      <div className="flex flex-col items-start leading-none gap-1">
-        <span className="text-[10px] uppercase tracking-widest text-primary/70 font-bold">{t("footer.visits") as string}</span>
-        <span className="text-foreground font-bold tabular-nums">
-          {count.toLocaleString()}
-        </span>
+    <div className="fixed bottom-6 left-6 z-40">
+      <div className="flex items-center gap-2.5 rounded-2xl border border-primary/20 bg-background/80 px-4 py-2.5 text-sm font-medium text-muted-foreground shadow-lg backdrop-blur-md transition-all hover:border-primary/40 hover:shadow-primary/10 group">
+        <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform group-hover:scale-110">
+          <Eye size={13} />
+        </div>
+        <div className="flex flex-col items-start leading-none gap-0.5">
+          <span className="text-[9px] uppercase tracking-widest text-primary/60 font-bold">
+            {t("footer.visits") as string}
+          </span>
+          <span className="text-foreground font-bold tabular-nums text-sm">
+            {count.toLocaleString()}
+          </span>
+        </div>
       </div>
     </div>
   );

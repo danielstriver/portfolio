@@ -115,7 +115,7 @@ const FeaturedCard = ({ project, index }: { project: ProjectItem; index: number 
           <span
             className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold backdrop-blur-md ${
               isTeam
-                ? "border-violet-400/30 bg-violet-500/20 text-violet-200"
+                ? "border-violet-500/50 bg-violet-500/15 text-violet-700 dark:bg-violet-500/25 dark:text-violet-200"
                 : "border-primary/30 bg-primary/20 text-primary-foreground"
             }`}
           >

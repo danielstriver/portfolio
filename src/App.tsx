@@ -62,6 +62,7 @@ function App() {
       </main>
 
       <WhatsAppButton />
+      <VisitorCounter />
 
       <AnimatePresence>
         {showScrollTop && (
@@ -80,11 +81,8 @@ function App() {
 
       <footer className="border-t border-[var(--border)] bg-background px-4 py-12">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-8 md:flex-row">
-          <div className="flex flex-col gap-4 items-center md:items-start">
-            <div className="text-center text-sm text-muted-foreground md:text-left">
-              © {new Date().getFullYear()} {COMMON_INFO.name}. {t("footer.rights") as string}
-            </div>
-            <VisitorCounter />
+          <div className="text-center text-sm text-muted-foreground md:text-left">
+            © {new Date().getFullYear()} {COMMON_INFO.name}. {t("footer.rights") as string}
           </div>
           <SocialLinks />
         </div>
