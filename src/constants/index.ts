@@ -167,7 +167,7 @@ export const DATA: Record<Language, TranslationData> = {
       },
     ],
     certifications: [
-      { name: "IEEE Member Certificate", issuer: "IEEE", year: 2025 },
+      { name: "IEEE Member Certificate", issuer: "IEEE", year: 2026 },
       { name: "Certified in Cybersecurity (CC)", issuer: "ISC2", year: 2022 },
       { name: "IOC Learning Sprint Certificate", issuer: "IOC Young Leaders", year: 2024 },
       { name: "iLead Leadership Certificate", issuer: "Maxwell Leadership Foundation", year: 2024 },
@@ -408,7 +408,7 @@ export const DATA: Record<Language, TranslationData> = {
       },
     ],
     certifications: [
-      { name: "Icyemezo cy'Umunyamuryango wa IEEE", issuer: "IEEE", year: 2025 },
+      { name: "Icyemezo cy'Umunyamuryango wa IEEE", issuer: "IEEE", year: 2026 },
       { name: "Impamyabumenyi muri Cybersecurity (CC)", issuer: "ISC2", year: 2022 },
       { name: "Icyemezo cya IOC Learning Sprint", issuer: "IOC Young Leaders", year: 2024 },
       { name: "Icyemezo cy'Ubuhanga mu Buyobozi (iLead)", issuer: "Maxwell Leadership Foundation", year: 2024 },
@@ -649,7 +649,7 @@ export const DATA: Record<Language, TranslationData> = {
       },
     ],
     certifications: [
-      { name: "Certificat de Membre IEEE", issuer: "IEEE", year: 2025 },
+      { name: "Certificat de Membre IEEE", issuer: "IEEE", year: 2026 },
       { name: "Certifié en Cybersécurité (CC)", issuer: "ISC2", year: 2022 },
       { name: "Certificat d'apprentissage IOC", issuer: "Jeunes leaders du CIO", year: 2024 },
       { name: "Certificat de Leadership iLead", issuer: "Fondation Maxwell Leadership", year: 2024 },
@@ -890,7 +890,7 @@ export const DATA: Record<Language, TranslationData> = {
       },
     ],
     certifications: [
-      { name: "Certificado de Miembro IEEE", issuer: "IEEE", year: 2025 },
+      { name: "Certificado de Miembro IEEE", issuer: "IEEE", year: 2026 },
       { name: "Certificado en Ciberseguridad (CC)", issuer: "ISC2", year: 2022 },
       { name: "Certificado IOC Learning Sprint", issuer: "IOC Young Leaders", year: 2024 },
       { name: "Certificado de Liderazgo iLead", issuer: "Maxwell Leadership Foundation", year: 2024 },
@@ -1131,7 +1131,7 @@ export const DATA: Record<Language, TranslationData> = {
       },
     ],
     certifications: [
-      { name: "IEEE-Mitgliedszertifikat", issuer: "IEEE", year: 2025 },
+      { name: "IEEE-Mitgliedszertifikat", issuer: "IEEE", year: 2026 },
       { name: "Zertifiziert in Cybersicherheit (CC)", issuer: "ISC2", year: 2022 },
       { name: "IOC Learning Sprint Zertifikat", issuer: "IOC Young Leaders", year: 2024 },
       { name: "iLead Führungszertifikat", issuer: "Maxwell Leadership Foundation", year: 2024 },
@@ -1372,7 +1372,7 @@ export const DATA: Record<Language, TranslationData> = {
       },
     ],
     certifications: [
-      { name: "Certificado de Membro IEEE", issuer: "IEEE", year: 2025 },
+      { name: "Certificado de Membro IEEE", issuer: "IEEE", year: 2026 },
       { name: "Certificado em Cibersegurança (CC)", issuer: "ISC2", year: 2022 },
       { name: "Certificado IOC Learning Sprint", issuer: "IOC Young Leaders", year: 2024 },
       { name: "Certificado de Liderança iLead", issuer: "Maxwell Leadership Foundation", year: 2024 },
@@ -1601,7 +1601,7 @@ export const DATA: Record<Language, TranslationData> = {
       { src: "/images/Gallery/norrsken-late-night.jpeg", alt: "Kikao cha usiku cha uandishi wa programu katika Norrsken House Kigali", caption: "Kikao cha Usiku — Norrsken House" },
     ],
     certifications: [
-      { name: "Cheti cha Uanachama wa IEEE", issuer: "IEEE", year: 2025 },
+      { name: "Cheti cha Uanachama wa IEEE", issuer: "IEEE", year: 2026 },
       { name: "Cheti cha Usalama wa Mtandao (CC)", issuer: "ISC2", year: 2022 },
       { name: "Cheti cha IOC Learning Sprint", issuer: "IOC Young Leaders", year: 2024 },
       { name: "Cheti cha Uongozi cha iLead", issuer: "Maxwell Leadership Foundation", year: 2024 },
@@ -1827,7 +1827,7 @@ export const DATA: Record<Language, TranslationData> = {
       { src: "/images/Gallery/norrsken-late-night.jpeg", alt: "جلسة برمجة متأخرة في Norrsken House كيغالي", caption: "جلسة برمجة ليلية — Norrsken House" },
     ],
     certifications: [
-      { name: "شهادة عضوية IEEE", issuer: "IEEE", year: 2025 },
+      { name: "شهادة عضوية IEEE", issuer: "IEEE", year: 2026 },
       { name: "شهادة الأمن السيبراني المعتمد (CC)", issuer: "ISC2", year: 2022 },
       { name: "شهادة IOC Learning Sprint", issuer: "IOC Young Leaders", year: 2024 },
       { name: "شهادة القيادة iLead", issuer: "Maxwell Leadership Foundation", year: 2024 },
@@ -2053,7 +2053,7 @@ export const DATA: Record<Language, TranslationData> = {
       { src: "/images/Gallery/norrsken-late-night.jpeg", alt: "在基加利Norrsken House的深夜编程会议", caption: "深夜编程会议 — Norrsken House" },
     ],
     certifications: [
-      { name: "IEEE会员证书", issuer: "IEEE", year: 2025 },
+      { name: "IEEE会员证书", issuer: "IEEE", year: 2026 },
       { name: "网络安全认证 (CC)", issuer: "ISC2", year: 2022 },
       { name: "IOC Learning Sprint 证书", issuer: "IOC Young Leaders", year: 2024 },
       { name: "iLead 领导力证书", issuer: "Maxwell Leadership Foundation", year: 2024 },
@@ -2279,7 +2279,7 @@ export const DATA: Record<Language, TranslationData> = {
       { src: "/images/Gallery/norrsken-late-night.jpeg", alt: "Norrsken House किगाली में देर रात कोडिंग सेशन", caption: "देर रात कोडिंग सेशन — Norrsken House" },
     ],
     certifications: [
-      { name: "IEEE सदस्यता प्रमाणपत्र", issuer: "IEEE", year: 2025 },
+      { name: "IEEE सदस्यता प्रमाणपत्र", issuer: "IEEE", year: 2026 },
       { name: "साइबरसुरक्षा में प्रमाणित (CC)", issuer: "ISC2", year: 2022 },
       { name: "IOC Learning Sprint प्रमाणपत्र", issuer: "IOC Young Leaders", year: 2024 },
       { name: "iLead नेतृत्व प्रमाणपत्र", issuer: "Maxwell Leadership Foundation", year: 2024 },
