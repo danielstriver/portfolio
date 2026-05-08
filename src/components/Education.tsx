@@ -3,6 +3,14 @@ import { useTranslation } from "../hooks/useTranslation";
 import type { CertificationItem, EducationItem } from "../types/language.types";
 import { GraduationCap, ExternalLink, Shield, Trophy, Star, Cpu, FlaskConical, Sparkles } from "lucide-react";
 
+const CERT_URLS: Record<string, string> = {
+  "ISC2":                        "/certificates/Certified in CYBERSECURITY course completion.pdf",
+  "IOC Young Leaders":           "/certificates/IOC Young Leaders Certificate.pdf",
+  "Maxwell Leadership Foundation": "/certificates/ILead.pdf",
+  "AIMS":                        "/certificates/Robotics Certificate.pdf",
+  "New Life Christian High School": "/certificates/Science Club Certificate.pdf",
+};
+
 const CERT_ICONS: { match: string; icon: React.ReactNode; color: string }[] = [
   { match: "ISC2",     icon: <Shield size={16} />,       color: "text-sky-500 bg-sky-500/10 border-sky-500/20" },
   { match: "IOC",      icon: <Trophy size={16} />,       color: "text-amber-500 bg-amber-500/10 border-amber-500/20" },
@@ -170,6 +178,18 @@ export const Education = () => {
                     <span className="shrink-0 rounded-full border border-[var(--border)] bg-[var(--surface)] px-2.5 py-0.5 text-[11px] font-bold tabular-nums text-muted-foreground group-hover:border-primary/20 transition-colors">
                       {cert.year}
                     </span>
+                    {CERT_URLS[cert.issuer] && (
+                      <a
+                        href={CERT_URLS[cert.issuer]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        title="View Certificate"
+                        className="shrink-0 inline-flex items-center justify-center h-7 w-7 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/8 transition-colors"
+                      >
+                        <ExternalLink size={12} />
+                      </a>
+                    )}
                   </motion.div>
                 );
               })}
