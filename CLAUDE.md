@@ -22,15 +22,15 @@ Single-page portfolio app: React 19 + TypeScript + Vite + Tailwind CSS v4 + Fram
 **All portfolio content and translations live in `src/constants/index.ts`.**
 
 - `COMMON_INFO` — personal info (name, email, phone, socials)
-- `DATA` — a `Record<Language, TranslationData>` with full translations for all six languages: English (`en`), Kinyarwanda (`rw`), French (`fr`), Spanish (`es`), German (`de`), and Portuguese (`pt`). Every string the UI renders (section headings, nav labels, contact copy, experience entries, projects, gallery, skills, education) is duplicated here for each language.
+- `DATA` — a `Record<Language, TranslationData>` with full translations for all ten languages: English (`en`), Kinyarwanda (`rw`), French (`fr`), Spanish (`es`), German (`de`), Portuguese (`pt`), Swahili (`sw`), Arabic (`ar`), Chinese (`zh`), and Hindi (`hi`). Every string the UI renders (section headings, nav labels, contact copy, experience entries, projects, gallery, skills, education) is duplicated here for each language.
 
-When adding new content or UI copy, add it to **all six** language entries in `DATA` and update the `TranslationData` interface in `src/types/language.types.ts` if new keys are needed.
+When adding new content or UI copy, add it to **all ten** language entries in `DATA` and update the `TranslationData` interface in `src/types/language.types.ts` if new keys are needed.
 
 ### Translation system
 
-- `LanguageProvider` (`src/providers/LanguageProvider.tsx`) reads/writes language preference to `localStorage` and sets `document.documentElement.lang`.
+- `LanguageProvider` (`src/providers/LanguageProvider.tsx`) reads/writes language preference to `localStorage`, sets `document.documentElement.lang`, and sets `dir="rtl"` on `<html>` when Arabic (`ar`) is active.
 - `useTranslation` hook (`src/hooks/useTranslation.ts`) exposes `t(key)` using dot-notation path traversal into `DATA[language]`.
-- `LanguageSwitcher` component lets users switch between all six languages.
+- `LanguageSwitcher` component lets users switch between all ten languages.
 
 ### Theme system
 
@@ -49,7 +49,11 @@ When adding new content or UI copy, add it to **all six** language entries in `D
 
 ### Visitor counter
 
-`VisitorCounter` component (`src/components/VisitorCounter.tsx`) hits `https://api.counterapi.dev/v1/daniel-niyomugenga-portfolio/visits/up` on mount. Renders nothing if the API call fails.
+`VisitorCounter` component (`src/components/VisitorCounter.tsx`) POSTs to `/api/counter` on mount (deduped per browser session via `sessionStorage`). Renders nothing if the API call fails or returns `null`.
+
+`api/counter.ts` is a Vercel Edge Function backed by Upstash Redis. It increments the `portfolio:visits` key and returns `{ count: number }`. Requires two env vars:
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
 
 ### WhatsApp button
 
