@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "../hooks/useTranslation";
 import type { CertificationItem, EducationItem } from "../types/language.types";
-import { GraduationCap, ExternalLink, Shield, Trophy, Star, Cpu, FlaskConical, Sparkles } from "lucide-react";
+import { GraduationCap, ExternalLink, Shield, Trophy, Star, Cpu, FlaskConical, Sparkles, Zap } from "lucide-react";
 
 const CERT_URLS: Record<string, string> = {
+  "IEEE":                        "/certificates/Daniel-IEEE-Member-Certificate.pdf",
   "ISC2":                        "/certificates/Certified in CYBERSECURITY course completion.pdf",
   "IOC Young Leaders":           "/certificates/IOC Young Leaders Certificate.pdf",
   "Maxwell Leadership Foundation": "/certificates/ILead.pdf",
@@ -12,6 +13,7 @@ const CERT_URLS: Record<string, string> = {
 };
 
 const CERT_ICONS: { match: string; icon: React.ReactNode; color: string }[] = [
+  { match: "IEEE",     icon: <Zap size={16} />,          color: "text-blue-500 bg-blue-500/10 border-blue-500/20" },
   { match: "ISC2",     icon: <Shield size={16} />,       color: "text-sky-500 bg-sky-500/10 border-sky-500/20" },
   { match: "IOC",      icon: <Trophy size={16} />,       color: "text-amber-500 bg-amber-500/10 border-amber-500/20" },
   { match: "Maxwell",  icon: <Star size={16} />,         color: "text-violet-400 bg-violet-400/10 border-violet-400/20" },
