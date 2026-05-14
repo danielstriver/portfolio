@@ -69,6 +69,32 @@ Provider nesting order in `main.tsx`: `ThemeProvider → LanguageProvider → Ap
 
 `LanguageProvider` initialises language from `localStorage` key `"language"`, falling back to `navigator.language` prefix, then `"en"`. The `t(key)` function returns the key string unchanged when a path is missing — useful for catching missing translations at runtime.
 
+### Certifications exception
+
+`Education.tsx` has two hardcoded maps that live outside `src/constants/index.ts`:
+- `CERT_URLS` — maps issuer name → PDF path under `public/certificates/`. Add an entry here whenever a new certification PDF is added.
+- `CERT_ICONS` — maps issuer keyword → Lucide icon + color class. Add a matching entry to control the icon shown on the cert card.
+
+When adding a new certification, update **three** places: the `certifications` array in all ten language entries in `src/constants/index.ts`, plus `CERT_URLS` and `CERT_ICONS` in `src/components/Education.tsx`.
+
+Certificate PDFs live in `public/certificates/`.
+
+### Education item types
+
+`EducationItem.type === "continuous"` triggers a distinct card style (violet gradient, animated "Live" badge, tags). Omit `type` for normal degree cards.
+
+### Project status
+
+`ProjectItem.status` (e.g. `"Coming Soon"`) renders a muted, greyscale "coming-soon" card instead of a featured card. Projects without `status` are rendered as full interactive cards. This split happens in `Projects.tsx`.
+
+### SVG sprite
+
+The GitHub icon is served via an SVG sprite at `public/icons.svg`. Reference icons as `<use href="/icons.svg#github-icon" />` rather than inlining SVG paths.
+
+### Translation return type
+
+`t(key)` returns `unknown`. Every call site must cast the result: `t("key") as string`, `t("array") as ProjectItem[]`, etc. This is intentional — the function uses dot-notation path traversal and cannot be statically typed without a major refactor.
+
 ### Utilities & metadata
 
 - `cn(...inputs)` in `src/lib/utils.ts` — clsx + tailwind-merge helper; use this whenever composing conditional Tailwind classes.
