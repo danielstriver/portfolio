@@ -165,6 +165,16 @@ export const DATA: Record<Language, TranslationData> = {
         alt: "Late-night coding session at Norrsken House Kigali",
         caption: "Late-Night Build Session — Norrsken House",
       },
+      {
+        src: "/images/Gallery/kipm-marathon-1.jpeg",
+        alt: "Daniel at the KIPM 10K for Peace Marathon, Kigali",
+        caption: "KIPM — 10K for Peace Marathon",
+      },
+      {
+        src: "/images/Gallery/kipm-marathon-2.jpeg",
+        alt: "Post-race at the Kigali International Peace Marathon",
+        caption: "KIPM — Finished in Under an Hour",
+      },
     ],
     certifications: [
       { name: "IEEE Member Certificate", issuer: "IEEE", year: 2026 },
@@ -405,6 +415,16 @@ export const DATA: Record<Language, TranslationData> = {
         src: "/images/Gallery/norrsken-late-night.jpeg",
         alt: "Gukorera ijoro mu Norrsken House Kigali",
         caption: "Gukorera Ijoro — Norrsken House",
+      },
+      {
+        src: "/images/Gallery/kipm-marathon-1.jpeg",
+        alt: "Daniel muri KIPM — Imbyino ya 10K y'Amahoro i Kigali",
+        caption: "KIPM — 10K for Peace Marathon",
+      },
+      {
+        src: "/images/Gallery/kipm-marathon-2.jpeg",
+        alt: "Nyuma y'imbyino ya KIPM i Kigali",
+        caption: "KIPM — Kurangiza Munsi y'Isaha",
       },
     ],
     certifications: [
@@ -647,6 +667,16 @@ export const DATA: Record<Language, TranslationData> = {
         alt: "Session de code tardive à Norrsken House Kigali",
         caption: "Session de Code en Soirée — Norrsken House",
       },
+      {
+        src: "/images/Gallery/kipm-marathon-1.jpeg",
+        alt: "Daniel au Marathon International de la Paix de Kigali — 10 km",
+        caption: "KIPM — Marathon 10K pour la Paix",
+      },
+      {
+        src: "/images/Gallery/kipm-marathon-2.jpeg",
+        alt: "Après la course au KIPM, Kigali",
+        caption: "KIPM — Terminé en Moins d'une Heure",
+      },
     ],
     certifications: [
       { name: "Certificat de Membre IEEE", issuer: "IEEE", year: 2026 },
@@ -887,6 +917,16 @@ export const DATA: Record<Language, TranslationData> = {
         src: "/images/Gallery/norrsken-late-night.jpeg",
         alt: "Sesión de programación nocturna en Norrsken House Kigali",
         caption: "Sesión de Código Nocturna — Norrsken House",
+      },
+      {
+        src: "/images/Gallery/kipm-marathon-1.jpeg",
+        alt: "Daniel en el Maratón Internacional de la Paz de Kigali — 10K",
+        caption: "KIPM — Maratón 10K por la Paz",
+      },
+      {
+        src: "/images/Gallery/kipm-marathon-2.jpeg",
+        alt: "Poscarrera en el KIPM, Kigali",
+        caption: "KIPM — Terminado en Menos de una Hora",
       },
     ],
     certifications: [
@@ -1129,6 +1169,16 @@ export const DATA: Record<Language, TranslationData> = {
         alt: "Nächtliche Programmiersitzung in Norrsken House Kigali",
         caption: "Nächtliche Coding-Session — Norrsken House",
       },
+      {
+        src: "/images/Gallery/kipm-marathon-1.jpeg",
+        alt: "Daniel beim Kigali International Peace Marathon — 10K",
+        caption: "KIPM — 10K Friedensmarathon",
+      },
+      {
+        src: "/images/Gallery/kipm-marathon-2.jpeg",
+        alt: "Nach dem Lauf beim KIPM, Kigali",
+        caption: "KIPM — In unter einer Stunde gefinisht",
+      },
     ],
     certifications: [
       { name: "IEEE-Mitgliedszertifikat", issuer: "IEEE", year: 2026 },
@@ -1370,6 +1420,16 @@ export const DATA: Record<Language, TranslationData> = {
         alt: "Sessão de programação noturna no Norrsken House Kigali",
         caption: "Sessão de Código Noturna — Norrsken House",
       },
+      {
+        src: "/images/Gallery/kipm-marathon-1.jpeg",
+        alt: "Daniel na Maratona Internacional da Paz de Kigali — 10K",
+        caption: "KIPM — Maratona 10K pela Paz",
+      },
+      {
+        src: "/images/Gallery/kipm-marathon-2.jpeg",
+        alt: "Pós-corrida na KIPM, Kigali",
+        caption: "KIPM — Concluído em Menos de uma Hora",
+      },
     ],
     certifications: [
       { name: "Certificado de Membro IEEE", issuer: "IEEE", year: 2026 },
@@ -1599,6 +1659,8 @@ export const DATA: Record<Language, TranslationData> = {
       { src: "/images/Gallery/scratch-competition.jpg", alt: "Daniel akiwasilisha mradi wa Scratch katika mashindano", caption: "Mashindano ya Programu ya Scratch" },
       { src: "/images/Gallery/techrise-stem-us-embassy.jpeg", alt: "Daniel katika mafunzo ya TechRise STEM, Ubalozi wa Marekani, Kigali", caption: "Mafunzo ya TechRise STEM — Ubalozi wa Marekani, Kigali" },
       { src: "/images/Gallery/norrsken-late-night.jpeg", alt: "Kikao cha usiku cha uandishi wa programu katika Norrsken House Kigali", caption: "Kikao cha Usiku — Norrsken House" },
+      { src: "/images/Gallery/kipm-marathon-1.jpeg", alt: "Daniel katika KIPM — 10K ya Amani Kigali", caption: "KIPM — Mbio za 10K za Amani" },
+      { src: "/images/Gallery/kipm-marathon-2.jpeg", alt: "Baada ya mbio za KIPM Kigali", caption: "KIPM — Kumaliza Chini ya Saa Moja" },
     ],
     certifications: [
       { name: "Cheti cha Uanachama wa IEEE", issuer: "IEEE", year: 2026 },
@@ -1825,6 +1887,8 @@ export const DATA: Record<Language, TranslationData> = {
       { src: "/images/Gallery/scratch-competition.jpg", alt: "دانيال يعرض مشروع Scratch في المسابقة", caption: "مسابقة برمجة Scratch" },
       { src: "/images/Gallery/techrise-stem-us-embassy.jpeg", alt: "دانيال في تدريب TechRise STEM، السفارة الأمريكية، كيغالي", caption: "تدريب TechRise STEM — السفارة الأمريكية، كيغالي" },
       { src: "/images/Gallery/norrsken-late-night.jpeg", alt: "جلسة برمجة متأخرة في Norrsken House كيغالي", caption: "جلسة برمجة ليلية — Norrsken House" },
+      { src: "/images/Gallery/kipm-marathon-1.jpeg", alt: "دانيال في ماراثون KIPM للسلام 10 كم، كيغالي", caption: "KIPM — ماراثون 10 كم من أجل السلام" },
+      { src: "/images/Gallery/kipm-marathon-2.jpeg", alt: "بعد سباق KIPM في كيغالي", caption: "KIPM — أنهيت في أقل من ساعة" },
     ],
     certifications: [
       { name: "شهادة عضوية IEEE", issuer: "IEEE", year: 2026 },
@@ -2051,6 +2115,8 @@ export const DATA: Record<Language, TranslationData> = {
       { src: "/images/Gallery/scratch-competition.jpg", alt: "Daniel在Scratch编程大赛上进行展示", caption: "Scratch编程竞赛" },
       { src: "/images/Gallery/techrise-stem-us-embassy.jpeg", alt: "Daniel参加TechRise STEM培训，美国大使馆，基加利", caption: "TechRise STEM培训 — 美国大使馆，基加利" },
       { src: "/images/Gallery/norrsken-late-night.jpeg", alt: "在基加利Norrsken House的深夜编程会议", caption: "深夜编程会议 — Norrsken House" },
+      { src: "/images/Gallery/kipm-marathon-1.jpeg", alt: "Daniel参加基加利国际和平马拉松10K", caption: "KIPM — 10K和平马拉松" },
+      { src: "/images/Gallery/kipm-marathon-2.jpeg", alt: "KIPM基加利赛后留影", caption: "KIPM — 不到一小时完成" },
     ],
     certifications: [
       { name: "IEEE会员证书", issuer: "IEEE", year: 2026 },
@@ -2277,6 +2343,8 @@ export const DATA: Record<Language, TranslationData> = {
       { src: "/images/Gallery/scratch-competition.jpg", alt: "Daniel Scratch प्रोग्रामिंग प्रतियोगिता में प्रस्तुति देते हुए", caption: "Scratch प्रोग्रामिंग प्रतियोगिता" },
       { src: "/images/Gallery/techrise-stem-us-embassy.jpeg", alt: "Daniel TechRise STEM प्रशिक्षण में, US दूतावास, किगाली", caption: "TechRise STEM प्रशिक्षण — US दूतावास, किगाली" },
       { src: "/images/Gallery/norrsken-late-night.jpeg", alt: "Norrsken House किगाली में देर रात कोडिंग सेशन", caption: "देर रात कोडिंग सेशन — Norrsken House" },
+      { src: "/images/Gallery/kipm-marathon-1.jpeg", alt: "Daniel KIPM 10K for Peace Marathon में, किगाली", caption: "KIPM — 10K शांति मैराथन" },
+      { src: "/images/Gallery/kipm-marathon-2.jpeg", alt: "KIPM किगाली में दौड़ के बाद", caption: "KIPM — एक घंटे से कम में पूरा किया" },
     ],
     certifications: [
       { name: "IEEE सदस्यता प्रमाणपत्र", issuer: "IEEE", year: 2026 },
