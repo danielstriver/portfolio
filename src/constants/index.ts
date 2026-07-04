@@ -10,7 +10,7 @@ export const COMMON_INFO = {
   dob: "June 16",
   gender: "Male",
   profileImage: {
-    src: "/images/Daniel_Profile_Photo.jpeg",
+    src: "/images/Daniel_Pro_Pic.jpeg",
     alt: "Portrait of Daniel Niyomugenga",
     width: 1254,
     height: 1254,

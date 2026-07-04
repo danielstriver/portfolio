@@ -4,12 +4,14 @@ import type { CertificationItem, EducationItem } from "../types/language.types";
 import { GraduationCap, ExternalLink, Shield, Trophy, Star, Cpu, FlaskConical, Sparkles, Zap } from "lucide-react";
 
 const CERT_URLS: Record<string, string> = {
-  "IEEE":                        "/certificates/Daniel-IEEE-Member-Certificate.pdf",
-  "ISC2":                        "/certificates/Certified in CYBERSECURITY course completion.pdf",
-  "IOC Young Leaders":           "/certificates/IOC Young Leaders Certificate.pdf",
+  "IEEE":                          "/certificates/Daniel-IEEE-Member-Certificate.pdf",
+  "ISC2":                          "/certificates/Certified%20in%20CYBERSECURITY%20course%20completion.pdf",
+  "IOC Young Leaders":             "/certificates/IOC%20Young%20Leaders%20Certificate.pdf",
+  "Jeunes leaders du CIO":         "/certificates/IOC%20Young%20Leaders%20Certificate.pdf",
   "Maxwell Leadership Foundation": "/certificates/ILead.pdf",
-  "AIMS":                        "/certificates/Robotics Certificate.pdf",
-  "New Life Christian High School": "/certificates/Science Club Certificate.pdf",
+  "Fondation Maxwell Leadership":  "/certificates/ILead.pdf",
+  "AIMS":                          "/certificates/Robotics%20Certificate.pdf",
+  "New Life Christian High School": "/certificates/Science%20Club%20Certificate.pdf",
 };
 
 const CERT_ICONS: { match: string; icon: React.ReactNode; color: string }[] = [
