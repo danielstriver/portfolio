@@ -6,10 +6,16 @@ import type { GalleryItem } from "../types/language.types";
 
 // Walk/lifestyle photos — language-independent
 const WALK_PHOTOS = [
-  { src: "/images/Gallery/walk/kigali-walk-1.jpeg", alt: "Walking near Kigali Convention Centre" },
-  { src: "/images/Gallery/walk/kigali-walk-2.jpeg", alt: "Exploring Kigali's premium district" },
+  { src: "/images/Gallery/walk/kigali-walk-1.jpeg", alt: "Walking through Kigali" },
+  { src: "/images/Gallery/walk/kigali-walk-2.jpeg", alt: "Exploring Kigali" },
   { src: "/images/Gallery/walk/kigali-walk-3.jpeg", alt: "Kigali city walk" },
-  { src: "/images/Gallery/walk/kigali-walk-4.jpeg", alt: "Around Kigali Convention Centre" },
+  { src: "/images/Gallery/walk/kigali-walk-4.jpeg", alt: "Kigali streets" },
+];
+
+// Marathon photos — Kigali International Peace Marathon 10K
+const MARATHON_PHOTOS = [
+  { src: "/images/Gallery/kipm-marathon-1.jpeg", alt: "After finishing the KIPM 10K for Peace" },
+  { src: "/images/Gallery/kipm-marathon-2.jpeg", alt: "Post-race at the Kigali International Peace Marathon" },
 ];
 
 export const Gallery = () => {
@@ -20,6 +26,7 @@ export const Gallery = () => {
   const allPhotos: { src: string; alt: string; caption?: string }[] = [
     ...galleryItems,
     ...WALK_PHOTOS,
+    ...MARATHON_PHOTOS,
   ];
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -201,37 +208,72 @@ export const Gallery = () => {
             </div>
           </motion.div>
 
-          {/* Right: walk photos 2×2 grid */}
+          {/* Right: walk photos 2×2 grid + KIPM marathon row */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="grid grid-cols-2 gap-3"
+            className="flex flex-col gap-3"
           >
-            {WALK_PHOTOS.map((photo, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative cursor-pointer overflow-hidden rounded-2xl"
-                style={{ height: "clamp(150px, 22vw, 180px)" }}
-                onClick={() => openLightbox(galleryItems.length + i)}
-              >
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="absolute right-2 top-2 rounded-full bg-black/30 p-1.5 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
-                  <Expand size={13} />
-                </div>
-              </motion.div>
-            ))}
+            {/* Walking Kigali — 2×2 */}
+            <div className="grid grid-cols-2 gap-3">
+              {WALK_PHOTOS.map((photo, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="group relative cursor-pointer overflow-hidden rounded-2xl"
+                  style={{ height: "clamp(130px, 18vw, 160px)" }}
+                  onClick={() => openLightbox(galleryItems.length + i)}
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute right-2 top-2 rounded-full bg-black/30 p-1.5 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
+                    <Expand size={13} />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* KIPM — 10K for Peace marathon */}
+            <div>
+              <p className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                <span>🏃</span> KIPM · 10K for Peace
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                {MARATHON_PHOTOS.map((photo, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.32 + i * 0.08 }}
+                    className="group relative cursor-pointer overflow-hidden rounded-2xl"
+                    style={{ height: "clamp(130px, 18vw, 160px)" }}
+                    onClick={() => openLightbox(galleryItems.length + WALK_PHOTOS.length + i)}
+                  >
+                    <img
+                      src={photo.src}
+                      alt={photo.alt}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="absolute right-2 top-2 rounded-full bg-black/30 p-1.5 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
+                      <Expand size={13} />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
