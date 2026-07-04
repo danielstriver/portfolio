@@ -98,13 +98,23 @@ export default {
     const ipAddress = getClientIp(request);
 
     if (ratelimit) {
-      const identifier = ipAddress === "unknown" ? "global" : ipAddress;
-      const { success } = await ratelimit.limit(identifier);
-      if (!success) {
-        return Response.json(
-          { success: false, message: "Too many requests. Please wait a few minutes and try again." },
-          { status: 429, headers: CORS_HEADERS },
-        );
+      try {
+        const identifier = ipAddress === "unknown" ? "global" : ipAddress;
+        const { success } = await ratelimit.limit(identifier);
+        if (!success) {
+          return Response.json(
+            { success: false, message: "Too many requests. Please wait a few minutes and try again." },
+            { status: 429, headers: CORS_HEADERS },
+          );
+        }
+      } catch {
+        // Redis unavailable — fall back to in-memory limiter
+        if (isInMemoryRateLimited(ipAddress)) {
+          return Response.json(
+            { success: false, message: "Too many requests. Please wait a few minutes and try again." },
+            { status: 429, headers: CORS_HEADERS },
+          );
+        }
       }
     } else if (isInMemoryRateLimited(ipAddress)) {
       return Response.json(

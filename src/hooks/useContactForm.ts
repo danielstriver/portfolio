@@ -66,7 +66,14 @@ export const useContactForm = () => {
         body: JSON.stringify(validationResult.data),
       });
 
-      const result = (await response.json()) as ContactApiResponse;
+      let result: ContactApiResponse;
+      try {
+        result = (await response.json()) as ContactApiResponse;
+      } catch {
+        setStatus("error");
+        setFeedbackMessage(t("contact.error") as string);
+        return;
+      }
 
       if (!response.ok || !result.success) {
         setStatus("error");
